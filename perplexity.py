@@ -45,6 +45,8 @@ plt.title('Porcentaje de Solicitudes por Número de Solicitud en Carrera Ingenie
 plt.xticks(range(min(porcentaje_df['id_solicitud']), max(porcentaje_df['id_solicitud'])+1))
 plt.show()
 
+print("Se mostro el matplot")
+
 # Cerrar la conexión a la base de datos
 cursor.close()
 conn.close()
