@@ -1,42 +1,16 @@
-import mysql.connector
-import pandas as pd
-import matplotlib.pyplot as plt
-from reportlab.lib.pagesizes import letter, landscape
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.platypus import Table, TableStyle
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib import colors
 
-# Conexión a la base de datos MySQL
-conn = mysql.connector.connect(
-host='localhost',
-user='root',
-password='valentin',
-database='indic',
-port="3307"
-)
+encabezados = [['Columna 1', 'Columna 2', "Columna 3"]]
+filas = [[1,2,3], [4,5,6], [7,8,9]]
 
-cursor = conn.cursor()
-
-# Consulta SQL para obtener los datos requeridos
-query = "SELECT id_solicitud, cedula FROM VinculoSolicitud WHERE id_carrera = 101"
-cursor.execute(query)
-data = cursor.fetchall()
-
-# Crear un DataFrame con los datos
-df = pd.DataFrame(data, columns=['id_solicitud', 'cedula'])
-
-# Crear el archivo PDF
-filename = "reportes.pdf"
-doc = SimpleDocTemplate(filename, pagesize=landscape(letter))
-
-data = [df.columns.tolist()] + df.values.tolist()
-
-# Crear una tabla con los datos
-table = Table(data)
-
-# Agregar la tabla al archivo PDF
-doc.build([table])
-
-# Cerrar la conexión a la base de datos
-cursor.close()
-conn.close()
-
+tabla = Table(encabezados + filas)
+# Agregar bordes a la tabla
+tabla.setStyle(TableStyle([
+    ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ('BOX', (0, 0), (-1, -1), 1, colors.black)
+]))
+doc = SimpleDocTemplate("table.pdf", pagesize=letter)
+doc.build([tabla])
