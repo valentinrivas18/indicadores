@@ -14,12 +14,12 @@ class VentanaPrincipal:
         
         # Boton Agregar
         self.boton1 = tk.Button(self.ventana, text="Agregar", width=10, height=1, font=("Arial", 12), command=self.abrir_agregar) 
-        self.boton1.pack()  # Colocar el botón en la p'uosición predeterminada
+        self.boton1.pack()  # Colocar el botón en la posicion predeterminada
         self.boton1.place(x=500, y=184)
 
         # Boton Consulta
         self.boton2 = tk.Button(self.ventana, text="Consulta", width=15, height=1, font=("Arial", 12)) 
-        self.boton2.pack()  # Colocar el botón en la posición predeterminada
+        self.boton2.pack()  # Colocar el botón en la posicion predeterminada
         self.boton2.place(x=475, y=250)
 
         # Boton Consulta por subprograma

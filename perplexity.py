@@ -1,8 +1,9 @@
 import mysql.connector
 import pandas as pd
 import matplotlib.pyplot as plt
-import tkinter as tk
-from tkinter import ttk
+from reportlab.lib.pagesizes import letter, landscape
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib import colors
 
 # Conexión a la base de datos MySQL
 conn = mysql.connector.connect(
@@ -22,7 +23,7 @@ data = cursor.fetchall()
 
 # Crear un DataFrame con los datos
 df = pd.DataFrame(data, columns=['id_solicitud', 'cedula'])
-0
+
 # Calcular el número de solicitudes por cada número de solicitud
 solicitudes_por_numero = df['id_solicitud'].value_counts()
 total_solicitudes = solicitudes_por_numero.sum()
@@ -40,6 +41,28 @@ resultados = pd.DataFrame({
 })
 
 print(resultados)
+
+# Crear el archivo PDF
+filename = "reporte.pdf"
+doc = SimpleDocTemplate(filename, pagesize=landscape(letter))
+
+# Crear una tabla con los datos del DataFrame
+table = Table(list(df.values))
+
+# Agregar estilos a la tabla
+table.setStyle(TableStyle([
+    ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+    ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+    ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+    ('FONTSIZE', (0, 0), (-1, 0), 14),
+    ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+    ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+    ('GRID', (0, 0), (-1, -1), 1, colors.black)
+]))
+
+# Agregar la tabla al archivo PDF
+doc.build([table])
 
 # Generar un gráfico de barras con los porcentajes
 porcentaje_df = porcentaje_solicitudes.reset_index()
