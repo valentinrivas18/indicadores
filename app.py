@@ -4,7 +4,6 @@ from VentanaAgregar import VentanaAgregar
 from VentanaAntds import VentanaAntds
 from PIL import Image, ImageTk
 
-
 class VentanaPrincipal:
     def __init__(self, ventana):
         self.ventana = ventana
