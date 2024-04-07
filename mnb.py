@@ -19,23 +19,16 @@ resultado = cursor.fetchall()
 resultado = list(resultado)
 resultado1 = [list(tup) for tup in resultado]
 
-query2 = "SELECT COUNT(*) as total from solicitudes"
+query2 = "SELECT COUNT(*) as total from VinculoSolicitud WHERE id_carrera = 101"
 cursor.execute(query2)
 total = cursor.fetchall()
 total_ent = [int(x) for tup in total for x in tup]
 t = int(total_ent[0])
 print(t)
 
-rango = [num for num in range (0,t)]
-filas =[]
-for i in resultado1:
-    for j in rango:
-            filas.append(resultado1[j])
-filasn = list(set(map(tuple, filas)))
-print(filasn)
 
 encabezados = [['ID', 'Solicitud', "Cantidad", "Porcentaje"]]
-filas = [resultado1[0],resultado1[1]]
+filas = [resultado1[0]+[1]+[3],resultado1[1],resultado[2],resultado[3],resultado[4]]
 
 tabla = Table(encabezados + filas)
 # Agregar bordes a la tabla
