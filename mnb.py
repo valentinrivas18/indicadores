@@ -86,8 +86,8 @@ ff10 = cursor.fetchall()
 fs10 = list(ff10[0])
 
 def porcentaje(x):
-    v = x[0] / t
-    vv = float("{:.2f}".format(v))
+    x = ((x[0] * 100) / t)
+    vv = float("{:.2f}".format(x))
     l = []
     l.append(vv)
     return l
