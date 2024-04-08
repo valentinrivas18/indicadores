@@ -87,22 +87,20 @@ fs10 = list(ff10[0])
 
 def porcentaje(x):
     v = x[0] / t
-    print(v)
+    vv = float("{:.2f}".format(v))
+    l = []
+    l.append(vv)
+    return l
 
-porcentaje(fs1)
+fila1 = resultado1[0]+fs1+porcentaje(fs1)
+fila2 = resultado1[1]+fs2+porcentaje(fs2)
+
+print(fila1)
 
 
 encabezados = [['ID', 'Solicitud', "Cantidad", "Porcentaje"]]
-filas = [resultado1[0]+fs1,
-         resultado1[1]+fs2,
-         resultado1[2]+fs3,
-         resultado1[3]+fs4,
-         resultado1[4]+fs5,
-         resultado1[5]+fs6,
-         resultado1[6]+fs7,
-         resultado1[7]+fs8,
-         resultado1[8]+fs9,
-         resultado1[9]+fs10,]
+filas = [fila1,
+         fila2]
 
 tabla = Table(encabezados + filas)
 # Agregar bordes a la tabla
