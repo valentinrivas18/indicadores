@@ -19,7 +19,7 @@ resultado = cursor.fetchall()
 resultado = list(resultado)
 resultado1 = [list(tup) for tup in resultado]
 
-query2 = "SELECT COUNT(*) as total from VinculoSolicitud WHERE id_carrera = 101"
+query2 = "SELECT COUNT(*) from VinculoSolicitud WHERE id_carrera = 101"
 cursor.execute(query2)
 total = cursor.fetchall()
 total_ent = [int(x) for tup in total for x in tup]
@@ -94,13 +94,29 @@ def porcentaje(x):
 
 fila1 = resultado1[0]+fs1+porcentaje(fs1)
 fila2 = resultado1[1]+fs2+porcentaje(fs2)
+fila3 = resultado1[2]+fs3+porcentaje(fs3)
+fila4 = resultado1[3]+fs4+porcentaje(fs4)
+fila5 = resultado1[4]+fs5+porcentaje(fs5)
+fila6 = resultado1[5]+fs6+porcentaje(fs6)
+fila7 = resultado1[6]+fs7+porcentaje(fs7)
+fila8 = resultado1[7]+fs8+porcentaje(fs8)
+fila9 = resultado1[8]+fs9+porcentaje(fs9)
+fila10 = resultado1[9]+fs10+porcentaje(fs10)
 
 print(fila1)
 
 
 encabezados = [['ID', 'Solicitud', "Cantidad", "Porcentaje"]]
 filas = [fila1,
-         fila2]
+         fila2,
+         fila3,
+         fila4,
+         fila5,
+         fila6,
+         fila7,
+         fila8,
+         fila9,
+         fila10]
 
 tabla = Table(encabezados + filas)
 # Agregar bordes a la tabla
