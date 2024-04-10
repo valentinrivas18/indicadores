@@ -1,9 +1,11 @@
+import matplotlib.pyplot as plt
+import io
+import mysql.connector
 from reportlab.platypus import Table, TableStyle
 from reportlab.lib.pagesizes import letter, A4
 from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
-import mysql.connector
 
 conexion = mysql.connector.connect(
     host="localhost",
@@ -124,6 +126,9 @@ fila11 = ["N/A", "TOTAL", t, sum(suma[0])-0.01]
 print(fila1)
 
 
+## creando el grafico
+## grafico
+
 c = canvas.Canvas("tabla.pdf", pagesize=letter)
 
 encabezados = [['ID', 'Solicitud', "Cantidad", "Porcentaje"]]
@@ -150,13 +155,22 @@ tabla.setStyle(TableStyle([
 mensaje = f"SUBPROGRAMA: {mensajex[0]}"
 print(mensaje)
 
+x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
+y = [0, 3, 1, 1,2,0,0,3,0,1]
+plt.bar(x, y)
+plt.savefig("plot.jpg")
+
+
 tabla.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tabla.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-c.drawImage("pcba.jpg", 480, 680, width=100, height=100)
+c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
 c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
 c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
 c.drawString(180, 660, "Programa de Ciencias Basicas y Aplicadas")
 c.drawString(150, 620, mensaje)
+c.drawImage("plot.jpg", 110, 100, width=370, height=270)
+c.drawString(180,350, "Descripcion Grafica")
+
 # Guardar el documento PDF
 c.save()
 

@@ -14,6 +14,7 @@ database='indic',
 port="3307"
 )
 
+
 cursor = conn.cursor()
 
 # Consulta SQL para obtener los datos requeridos
@@ -24,12 +25,14 @@ data = cursor.fetchall()
 # Crear un DataFrame con los datos
 df = pd.DataFrame(data, columns=['id_solicitud', 'cedula'])
 
+
 # Calcular el número de solicitudes por cada número de solicitud
 solicitudes_por_numero = df['id_solicitud'].value_counts()
 total_solicitudes = solicitudes_por_numero.sum()
 max_solicitudes = solicitudes_por_numero.max()
+print(max_solicitudes)
 
-print(type(total_solicitudes))
+#print(solicitudes_por_numero)
 
 # Calcular el porcentaje de solicitudes por número de solicitud
 porcentaje_solicitudes = (solicitudes_por_numero / total_solicitudes) * 100
@@ -40,33 +43,11 @@ resultados = pd.DataFrame({
     'Porcentaje': porcentaje_solicitudes.values
 })
 
-print(resultados)
-
-# Crear el archivo PDF
-filename = "reporte.pdf"
-doc = SimpleDocTemplate(filename, pagesize=landscape(letter))
-
-# Crear una tabla con los datos del DataFrame
-table = Table(list(df.values))
-
-# Agregar estilos a la tabla
-table.setStyle(TableStyle([
-    ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-    ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-    ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-    ('FONTSIZE', (0, 0), (-1, 0), 14),
-    ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-    ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-    ('GRID', (0, 0), (-1, -1), 1, colors.black)
-]))
-
-# Agregar la tabla al archivo PDF
-doc.build([table])
 
 # Generar un gráfico de barras con los porcentajes
 porcentaje_df = porcentaje_solicitudes.reset_index()
 porcentaje_df.columns = ['id_solicitud', 'porcentaje']
+
 
 # Graficar los porcentajes de solicitudes por número de solicitud en un gráfico de barras
 plt.bar(porcentaje_df['id_solicitud'], porcentaje_df['porcentaje'])
@@ -75,8 +56,6 @@ plt.ylabel('Porcentaje')
 plt.title('Porcentaje de Solicitudes por Número de Solicitud en Carrera Ingenieria en Petroleo')
 plt.xticks(range(min(porcentaje_df['id_solicitud']), max(porcentaje_df['id_solicitud'])+1))
 plt.show()
-
-
 
 print("Se mostro el matplot")
 
