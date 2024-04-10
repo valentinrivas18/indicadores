@@ -27,7 +27,7 @@ cursor.execute(query2)
 total = cursor.fetchall()
 total_ent = [int(x) for tup in total for x in tup]
 t = int(total_ent[0])
-print(t)
+
 
 query3 = "SELECT carrera from subprograma WHERE id_carrera = 101"
 cursor.execute(query3)
@@ -110,21 +110,20 @@ suma = [porcentaje(fs1)+
         porcentaje(fs8)+
         porcentaje(fs9)+
         porcentaje(fs10)]
-
-fila1 = resultado1[0]+fs1+porcentaje(fs1)
-fila2 = resultado1[1]+fs2+porcentaje(fs2)
-fila3 = resultado1[2]+fs3+porcentaje(fs3)
-fila4 = resultado1[3]+fs4+porcentaje(fs4)
-fila5 = resultado1[4]+fs5+porcentaje(fs5)
-fila6 = resultado1[5]+fs6+porcentaje(fs6)
-fila7 = resultado1[6]+fs7+porcentaje(fs7)
-fila8 = resultado1[7]+fs8+porcentaje(fs8)
-fila9 = resultado1[8]+fs9+porcentaje(fs9)
-fila10 = resultado1[9]+fs10+porcentaje(fs10)
+x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
+fila1 = [x[0]]+[resultado1[0][1]]+fs1+porcentaje(fs1)
+fila2 = [x[1]]+[resultado1[1][1]]+fs2+porcentaje(fs2)
+fila3 = [x[2]]+[resultado1[2][1]]+fs3+porcentaje(fs3)
+fila4 = [x[3]]+[resultado1[3][1]]+fs4+porcentaje(fs4)
+fila5 = [x[4]]+[resultado1[4][1]]+fs5+porcentaje(fs5)
+fila6 = [x[5]]+[resultado1[5][1]]+fs6+porcentaje(fs6)
+fila7 = [x[6]]+[resultado1[6][1]]+fs7+porcentaje(fs7)
+fila8 = [x[7]]+[resultado1[7][1]]+fs8+porcentaje(fs8)
+fila9 = [x[8]]+[resultado1[8][1]]+fs9+porcentaje(fs9)
+fila10 = [x[9]]+[resultado1[9][1]]+fs10+porcentaje(fs10)
 fila11 = ["N/A", "TOTAL", t, sum(suma[0])-0.01]
 
-print(fila1)
-
+print((resultado1[0])[1])
 
 ## creando el grafico
 ## grafico
@@ -153,11 +152,19 @@ tabla.setStyle(TableStyle([
 
 
 mensaje = f"SUBPROGRAMA: {mensajex[0]}"
-print(mensaje)
+#x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
+yp = [porcentaje(fs1)[0],porcentaje(fs2)[0],porcentaje(fs3)[0],porcentaje(fs4)[0],porcentaje(fs5)[0],porcentaje(fs6)[0],porcentaje(fs7)[0],porcentaje(fs8)[0],porcentaje(fs9)[0],porcentaje(fs10)[0]]
+y = [fila1[2], fila2[2], fila3[2], fila4[2], fila5[2], fila6[2], fila7[2], fila8[2], fila9[2], fila10[2]]
+print(y)
+plt.bar(x, yp)
+print(porcentaje(fs1))
 
-x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
-y = [0, 3, 1, 1,2,0,0,3,0,1]
-plt.bar(x, y)
+for i, v in enumerate(yp):
+    plt.text(i, v / 2, str(v), color='white', ha='center')
+
+# Etiquetas de los ejes
+plt.xlabel('Solicitudes')
+plt.ylabel('Cantidad')
 plt.savefig("plot.jpg")
 
 
@@ -169,7 +176,7 @@ c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
 c.drawString(180, 660, "Programa de Ciencias Basicas y Aplicadas")
 c.drawString(150, 620, mensaje)
 c.drawImage("plot.jpg", 110, 100, width=370, height=270)
-c.drawString(180,350, "Descripcion Grafica")
+c.drawString(250,350, "Descripcion Grafica")
 
 # Guardar el documento PDF
 c.save()
