@@ -160,7 +160,7 @@ plt.bar(x, yp)
 print(porcentaje(fs1))
 
 for i, v in enumerate(yp):
-    plt.text(i, v / 2, str(v), color='white', ha='center')
+    plt.text(i, v / 2, str(v), color='white', ha='center', size="8")
 
 # Etiquetas de los ejes
 plt.xlabel('Solicitudes')
