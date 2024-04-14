@@ -22,14 +22,14 @@ resultado = cursor.fetchall()
 resultado = list(resultado)
 resultado1 = [list(tup) for tup in resultado]
 
-query2 = "SELECT COUNT(*) from VinculoSolicitud WHERE id_carrera = 101"
+query2 = "SELECT COUNT(*) from VinculoSolicitud WHERE id_carrera = 105"
 cursor.execute(query2)
 total = cursor.fetchall()
 total_ent = [int(x) for tup in total for x in tup]
 t = int(total_ent[0])
 
 
-query3 = "SELECT carrera from subprograma WHERE id_carrera = 101"
+query3 = "SELECT carrera from subprograma WHERE id_carrera = 105"
 cursor.execute(query3)
 mensajex = list(cursor.fetchall()[0])
 
@@ -37,58 +37,58 @@ mensajex = list(cursor.fetchall()[0])
 
 suma = []
 
-f1 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 1;"
+f1 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 1;"
 cursor.execute(f1)
 ff1 = cursor.fetchall()
 fs1 = list(ff1[0])
 
 
-f2 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 2;"
+f2 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 2;"
 cursor.execute(f2)
 ff2 = cursor.fetchall()
 fs2 = list(ff2[0])
 
 
-f3 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 3;"
+f3 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 3;"
 cursor.execute(f3)
 ff3 = cursor.fetchall()
 fs3 = list(ff3[0])
 
 
-f4 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 4;"
+f4 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 4;"
 cursor.execute(f4)
 ff4 = cursor.fetchall()
 fs4 = list(ff4[0])
 
 
-f5 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 5;"
+f5 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 5;"
 cursor.execute(f5)
 ff5 = cursor.fetchall()
 fs5 = list(ff5[0])
 
 
-f6 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 6;"
+f6 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 6;"
 cursor.execute(f6)
 ff6 = cursor.fetchall()
 fs6 = list(ff6[0])
 
 
-f7 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 7;"
+f7 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 7;"
 cursor.execute(f7)
 ff7 = cursor.fetchall()
 fs7 = list(ff7[0])
 
-f8 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 8;"
+f8 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 8;"
 cursor.execute(f8)
 ff8 = cursor.fetchall()
 fs8 = list(ff8[0])
 
-f9 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 9;"
+f9 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 9;"
 cursor.execute(f9)
 ff9 = cursor.fetchall()
 fs9 = list(ff9[0])
 
-f10 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 101 and id_solicitud = 10;"
+f10 = "Select COUNT(*) from VinculoSolicitud WHERE id_carrera = 105 and id_solicitud = 10;"
 cursor.execute(f10)
 ff10 = cursor.fetchall()
 fs10 = list(ff10[0])
@@ -128,7 +128,7 @@ print((resultado1[0])[1])
 ## creando el grafico
 ## grafico
 
-c = canvas.Canvas("tabla.pdf", pagesize=letter)
+c = canvas.Canvas("105.pdf", pagesize=letter)
 
 encabezados = [['ID', 'Solicitud', "Cantidad", "Porcentaje"]]
 filas = [fila1,
@@ -160,12 +160,12 @@ plt.bar(x, yp)
 print(porcentaje(fs1))
 
 for i, v in enumerate(yp):
-    plt.text(i, v / 2, str(v), color='white', ha='center')
+    plt.text(i, v / 2, str(v), color='white', ha='center', size="8")
 
 # Etiquetas de los ejes
 plt.xlabel('Solicitudes')
 plt.ylabel('Cantidad')
-plt.savefig("plot.jpg")
+plt.savefig("105.jpg")
 
 
 tabla.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
@@ -175,7 +175,7 @@ c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
 c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
 c.drawString(180, 660, "Programa de Ciencias Basicas y Aplicadas")
 c.drawString(150, 620, mensaje)
-c.drawImage("plot.jpg", 110, 100, width=370, height=270)
+c.drawImage("105.jpg", 110, 100, width=370, height=270)
 c.drawString(250,350, "Descripcion Grafica")
 
 # Guardar el documento PDF
