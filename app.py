@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from VentanaAgregar import VentanaAgregar
 from VentanaAntds import VentanaAntds
+from VentanaConsulta import *
 from PIL import Image, ImageTk
 
 class VentanaPrincipal:
@@ -17,7 +18,7 @@ class VentanaPrincipal:
         self.boton1.place(x=500, y=184)
 
         # Boton Consulta
-        self.boton2 = tk.Button(self.ventana, text="Consulta", width=15, height=1, font=("Arial", 12)) 
+        self.boton2 = tk.Button(self.ventana, text="Consulta", width=15, height=1, font=("Arial", 12), command=self.abrir_consulta) 
         self.boton2.pack()  # Colocar el botón en la posicion predeterminada
         self.boton2.place(x=475, y=250)
 
@@ -37,7 +38,11 @@ class VentanaPrincipal:
         
     def abrir_agregar(self):
         self.ventana_agregar = tk.Toplevel(self.ventana)
-        self.app_agregar = VentanaAgregar(self.ventana_agregar)    
+        self.app_agregar = VentanaAgregar(self.ventana_agregar)
+    
+    def abrir_consulta(self):
+        self.ventana_consulta = tk.Toplevel(self.ventana)
+        self.app_agregar = VentanaConsulta(self.ventana_consulta)
        
 if __name__ == "__main__":
     ventana = tk.Tk()

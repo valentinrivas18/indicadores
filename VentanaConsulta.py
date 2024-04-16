@@ -1,36 +1,31 @@
 import tkinter as tk
 import mysql.connector
+from uno import *
+from dos import *
+from tres import *
+from cuatro import *
+from cinco import *
+from seis import *
+from siete import *
+from ocho import *
+from nueve import *
 
 class VentanaConsulta:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Ventana de Consulta")
+    def __init__(self, consultaventana):
+        self.consultaventana = consultaventana
+        self.consultaventana.title("Ventana de Consulta")
+        self.consultaventana = tk.Button(self.consultaventana, text="Consulta", command=self.imprimir)
+        self.consultaventana.pack()
 
-        # Conexión a la base de datos MySQL
-        conexion = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="valentin",
-        database="indic",
-        port="3307"
-        )
-        
-        cursor = conexion.cursor()
-        
-        # Ejemplo de consulta a una tabla llamada 'datos'
-        query = "SELECT * FROM VinculoSolicitud"
-        
-        cursor.execute(query)
-        d = cursor.fetchall()
-        print(d)
-        for row in d:
-            label_texto = tk.Label(self.root, text=row)  # Suponiendo que el texto está en la segunda columna
-            label_texto.pack()
+    def imprimir(self):
+        page1()
+
+
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = VentanaConsulta(root)
-    root.mainloop()
+    consultaventana = tk.Tk()
+    app = VentanaConsulta(consultaventana)
+    consultaventana.mainloop()
 
     
         
