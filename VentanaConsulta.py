@@ -1,6 +1,6 @@
 import tkinter as tk
 import mysql.connector
-from uno import *
+from uno import pagina1
 from dos import *
 from tres import *
 from cuatro import *
@@ -16,11 +16,6 @@ class VentanaConsulta:
         self.consultaventana.title("Ventana de Consulta")
         self.consultaventana = tk.Button(self.consultaventana, text="Consulta", command=self.imprimir)
         self.consultaventana.pack()
-
-    def imprimir(self):
-        page1()
-
-
 
 if __name__ == "__main__":
     consultaventana = tk.Tk()

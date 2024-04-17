@@ -7,7 +7,7 @@ from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
 
-class pagina1:
+class pagina2:
     def __init__(self):
         def page2():
             conexion = mysql.connector.connect(
