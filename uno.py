@@ -134,8 +134,8 @@ fila1 = [[x[0]]+[resultado1[0][1]]+fs1+porcentaje(fs1),
 # fila9 = [x[8]]+[resultado1[8][1]]+fs9+porcentaje(fs9)
 # fila10 = [x[9]]+[resultado1[9][1]]+fs10+porcentaje(fs10)
 # fila11 = ["N/A", "TOTAL", t, sum(suma[0])-0.01]
-print(fila1)
 
+print(suma)
 ## creando el grafico
 ## grafico
 
