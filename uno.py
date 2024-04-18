@@ -21,6 +21,7 @@ resultado = cursor.fetchall()
 resultado = list(resultado)
 resultado1 = [list(tup) for tup in resultado]
 
+
 query2 = "SELECT COUNT(*) from VinculoSolicitud WHERE id_carrera = 101"
 cursor.execute(query2)
 total = cursor.fetchall()
@@ -109,18 +110,31 @@ porcentaje(fs8)+
 porcentaje(fs9)+
 porcentaje(fs10)]
 x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
-fila1 = [x[0]]+[resultado1[0][1]]+fs1+porcentaje(fs1)
-fila2 = [x[1]]+[resultado1[1][1]]+fs2+porcentaje(fs2)
-fila3 = [x[2]]+[resultado1[2][1]]+fs3+porcentaje(fs3)
-fila4 = [x[3]]+[resultado1[3][1]]+fs4+porcentaje(fs4)
-fila5 = [x[4]]+[resultado1[4][1]]+fs5+porcentaje(fs5)
-fila6 = [x[5]]+[resultado1[5][1]]+fs6+porcentaje(fs6)
-fila7 = [x[6]]+[resultado1[6][1]]+fs7+porcentaje(fs7)
-fila8 = [x[7]]+[resultado1[7][1]]+fs8+porcentaje(fs8)
-fila9 = [x[8]]+[resultado1[8][1]]+fs9+porcentaje(fs9)
-fila10 = [x[9]]+[resultado1[9][1]]+fs10+porcentaje(fs10)
-fila11 = ["N/A", "TOTAL", t, sum(suma[0])-0.01]
 
+fila1 = [[x[0]]+[resultado1[0][1]]+fs1+porcentaje(fs1),
+[x[1]]+[resultado1[1][1]]+fs2+porcentaje(fs2),
+[x[2]]+[resultado1[2][1]]+fs3+porcentaje(fs3),
+[x[3]]+[resultado1[3][1]]+fs4+porcentaje(fs4),
+[x[4]]+[resultado1[4][1]]+fs5+porcentaje(fs5),
+[x[5]]+[resultado1[5][1]]+fs6+porcentaje(fs6),
+[x[6]]+[resultado1[6][1]]+fs7+porcentaje(fs7),
+[x[7]]+[resultado1[7][1]]+fs8+porcentaje(fs8),
+[x[8]]+[resultado1[8][1]]+fs9+porcentaje(fs9),
+[x[9]]+[resultado1[9][1]]+fs10+porcentaje(fs10),
+["N/A", "TOTAL", t, sum(suma[0])-0.01]]
+
+# fila1 = [x[0]]+[resultado1[0][1]]+fs1+porcentaje(fs1)
+# fila2 = [x[1]]+[resultado1[1][1]]+fs2+porcentaje(fs2)
+# fila3 = [x[2]]+[resultado1[2][1]]+fs3+porcentaje(fs3)
+# fila4 = [x[3]]+[resultado1[3][1]]+fs4+porcentaje(fs4)
+# fila5 = [x[4]]+[resultado1[4][1]]+fs5+porcentaje(fs5)
+# fila6 = [x[5]]+[resultado1[5][1]]+fs6+porcentaje(fs6)
+# fila7 = [x[6]]+[resultado1[6][1]]+fs7+porcentaje(fs7)
+# fila8 = [x[7]]+[resultado1[7][1]]+fs8+porcentaje(fs8)
+# fila9 = [x[8]]+[resultado1[8][1]]+fs9+porcentaje(fs9)
+# fila10 = [x[9]]+[resultado1[9][1]]+fs10+porcentaje(fs10)
+# fila11 = ["N/A", "TOTAL", t, sum(suma[0])-0.01]
+print(fila1)
 
 ## creando el grafico
 ## grafico
@@ -128,20 +142,10 @@ fila11 = ["N/A", "TOTAL", t, sum(suma[0])-0.01]
 c = canvas.Canvas("uno.pdf", pagesize=letter)
 
 encabezados = [['ID', 'Solicitud', "Cantidad", "Porcentaje"]]
-filas = [fila1,
-    fila2,
-    fila3,
-    fila4,
-    fila5,
-    fila6,
-    fila7,
-    fila8,
-    fila9,
-    fila10,
-    fila11]
 
-tabla = Table(encabezados + filas)
-# Agregar bordes a la tabla
+
+tabla = Table(encabezados + fila1)
+#Agregar bordes a la tabla
 tabla.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
@@ -150,17 +154,17 @@ tabla.setStyle(TableStyle([
 
 mensaje = f"SUBPROGRAMA: {mensajex}"
 #x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
-yp = [porcentaje(fs1)[0],porcentaje(fs2)[0],porcentaje(fs3)[0],porcentaje(fs4)[0],porcentaje(fs5)[0],porcentaje(fs6)[0],porcentaje(fs7)[0],porcentaje(fs8)[0],porcentaje(fs9)[0],porcentaje(fs10)[0]]
-y = [fila1[2], fila2[2], fila3[2], fila4[2], fila5[2], fila6[2], fila7[2], fila8[2], fila9[2], fila10[2]]
-plt.bar(x, yp)
+# yp = [porcentaje(fs1)[0],porcentaje(fs2)[0],porcentaje(fs3)[0],porcentaje(fs4)[0],porcentaje(fs5)[0],porcentaje(fs6)[0],porcentaje(fs7)[0],porcentaje(fs8)[0],porcentaje(fs9)[0],porcentaje(fs10)[0]]
+# y = [fila1[2], fila2[2], fila3[2], fila4[2], fila5[2], fila6[2], fila7[2], fila8[2], fila9[2], fila10[2]]
+# plt.bar(x, yp)
 
-for i, v in enumerate(yp):
-    plt.text(i, v / 2, str(v), color='white', ha='center', size="8")
+# for i, v in enumerate(yp):
+#     plt.text(i, v / 2, str(v), color='white', ha='center', size="8")
 
-# Etiquetas de los ejes
-plt.xlabel('Solicitudes')
-plt.ylabel('Cantidad')
-plt.savefig("uno.jpg")
+# # Etiquetas de los ejes
+# plt.xlabel('Solicitudes')
+# plt.ylabel('Cantidad')
+# plt.savefig("uno.jpg")
 
 
 tabla.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
@@ -170,7 +174,7 @@ c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
 c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
 c.drawString(180, 660, "Programa de Ciencias Basicas y Aplicadas")
 c.drawString(150, 620, mensaje)
-c.drawImage("uno.jpg", 110, 100, width=370, height=270)
+# c.drawImage("uno.jpg", 110, 100, width=370, height=270)
 c.drawString(250,350, "Descripcion Grafica")
 
 # Guardar el documento PDF
