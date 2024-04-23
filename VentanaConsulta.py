@@ -1,14 +1,5 @@
 import tkinter as tk
 import mysql.connector
-from uno import pagina1
-from dos import *
-from tres import *
-from cuatro import *
-from cinco import *
-from seis import *
-from siete import *
-from ocho import *
-from nueve import *
 
 class VentanaConsulta:
     def __init__(self, consultaventana):

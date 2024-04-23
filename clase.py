@@ -12,13 +12,17 @@ class Plantilla:
     def __init__(self, carrera):
         self.carrera = carrera
     
-    def crear(self):
+    def crear_tabla(self):
         """Conexion a la base de datos"""
         db = solicitudesDB("localhost", "root", "valentin", "indic", "3307")
         db.conectar()
-        """Solicitudes para Ingenieria en Informatica"""
+        """Esta parte del codigo se encarga unicamente de consultar datos que van a ser ingresados dentro de la tabla,
+        nada de lo que este fuera de la tabla se encontrara dentro de este archivo, la razon es porque esta funcion es unicamente
+        capaz de retornar los datos de la tabla, toda consulta que se muestre fuera de la base de datos tiene que ir en otra funcion,
+        aqui solamente."""
+
+        """Solicitudes para X subprograma(Carrera)"""
         total = db.TotalSCarrera(self.carrera)
-        carrera = "SUBPROGRAMA: " + db.NombreCarrera(self.carrera)
         SoliPorCarr = db.TotalSoliPorCarr(self.carrera, 1)
         NDS = db.NombreDeSolis()
         """Aqui se saca el porcentaje"""
@@ -30,7 +34,16 @@ class Plantilla:
                 vv = 0
             return vv
         #Elementos para ser insertados en la tabla en su respectivo orden#
-        x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
+        x = ['CDTS',
+            'SP',
+            'AR',
+            'PDTI',
+            'AE',
+            'CS',
+            'EUC',
+            'IE',
+            'ADN',
+            'LP']
         fila1 = [ [x[0],NDS[0][0],db.TotalSoliPorCarr(self.carrera, 1), porcentaje(db.TotalSoliPorCarr(self.carrera, 1))],
                 [x[1],NDS[1][0],db.TotalSoliPorCarr(self.carrera, 2), porcentaje(db.TotalSoliPorCarr(self.carrera, 2))],
                 [x[2],NDS[2][0],db.TotalSoliPorCarr(self.carrera, 3), porcentaje(db.TotalSoliPorCarr(self.carrera, 3))],
@@ -44,7 +57,7 @@ class Plantilla:
                 ["N/A", "TOTAL", total]
                     ]
         """Este fragmento de codigo sirver sirve para sumar el porcentaje total de
-            las solicitudes del subprograma"""
+            las solicitudes del subprograma y agregarlo en la ultima fila de la tabla"""
         prueba = []
         for i in range(0,len(fila1)-1):
             UE = fila1[i][-1]
@@ -52,44 +65,68 @@ class Plantilla:
         obj = sum(prueba)
         fila1[len(fila1)-1].append(obj)
 
+        """Estos son los encabezados de la tabla, es decir el titulo de los campos"""
+        encabezados = [['ID', 'Solicitud', "Cantidad", "Porcentaje"]]
 
+        """En esta parte ya se unifica los encabezados con las filas, en este caso yo hice una sola tabla para representar
+        todas las filas ya que asi se hace mas facil y corto el codigo."""
+        tabla = Table(encabezados + fila1)
+        return tabla
+    def fecha(self):
         """Estas dos lineas de codigo sirven para que el pdf generado tenga como nombre la fecha y hora en la que se genero"""
         FA = datetime.datetime.now()
         FechaPDF = FA.strftime("Fecha: "+"%d/%m/%Y")
         FF = FA.strftime("REPORTE-"+"%Iy%M"+"%p-"+"%Y%m%d"+".pdf")
-
-        c = canvas.Canvas("prueba.pdf", pagesize=letter)
-
-        encabezados = [['ID', 'Solicitud', "Cantidad", "Porcentaje"]]
-        tabla = Table(encabezados + fila1)
-
-        tabla.setStyle(TableStyle([
-        ('GRID', (0, 0), (-1, -1), 1, colors.black),
-        ('BOX', (0, 0), (-1, -1), 1, colors.black)
-        ]))
-
-        tabla.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
-        tabla.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
-        c.drawString(160, 690, FechaPDF)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
-        c.drawString(150, 620, carrera)
-        # c.drawImage("uno.jpg", 110, 100, width=370, height=270)
-        c.drawString(250,350, "Descripcion Grafica")
-        c.showPage()
+        return FechaPDF
+    def mensajecarrera(self):
+        """Conexion a la base de datos"""
+        db = solicitudesDB("localhost", "root", "valentin", "indic", "3307")
+        db.conectar()
+        nombrecarrera = "SUBPROGRAMA: " + db.NombreCarrera(self.carrera)
+        return nombrecarrera
 
 
-        # Ingenieria en tal
-        c.drawString(250,350, "Descripcion Grafica")
-        c.showPage()
+ING_i = Plantilla(101)
+tablai = ING_i.crear_tabla()
+msjcarrerai = ING_i.mensajecarrera()
+fechadi = ING_i.fecha()
 
+ING_p = Plantilla(102)
+tablap = ING_p.crear_tabla()
+msjcarrerap = ING_p.mensajecarrera()
+fechadp = ING_p.fecha()
 
+ING_m = Plantilla(103)
+tablam = ING_m.crear_tabla()
+msjcarreram = ING_m.mensajecarrera()
+fechadm = ING_m.fecha()
 
-        # Guardar el documento PDF
-        c.save()
+ING_c = Plantilla(104)
+tablac = ING_c.crear_tabla()
+msjcarrerac = ING_c.mensajecarrera()
+fechadc = ING_c.fecha()
 
-cr = Plantilla(101)
+LicM = Plantilla(105)
+tablalm = LicM.crear_tabla()
+msjcarreralm = LicM.mensajecarrera()
+fechadlm = LicM.fecha()
 
-d = cr.crear()
+Arq = Plantilla(106)
+tablaA = Arq.crear_tabla()
+msjcarreraA = Arq.mensajecarrera()
+fechadA = Arq.fecha()
+
+tsuT = Plantilla(107)
+tablatT = tsuT.crear_tabla()
+msjcarreratT = tsuT.mensajecarrera()
+fechadtT = tsuT.fecha()
+
+tsuC = Plantilla(108)
+tablatC = tsuC.crear_tabla()
+msjcarreratC = tsuC.mensajecarrera()
+fechadtC = tsuC.fecha()
+
+tsuI = Plantilla(109)
+tablatI = tsuI.crear_tabla()
+msjcarreratI = tsuI.mensajecarrera()
+fechadtI = tsuI.fecha()
