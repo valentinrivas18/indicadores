@@ -1,4 +1,4 @@
-Fecha de documentacion: 22/04/2024
+Fecha de documentacion: 21/04/2024
 
 El programa ya esta casi terminado, las unicas cosas que le faltan son las siguientes:
 
@@ -21,3 +21,9 @@ El programa ya esta casi terminado, las unicas cosas que le faltan son las sigui
 
 - Añadir un boton que permita limpiar la base de datos: Es decir, borrar todas las solicitudes hechas para que asi se puedan insertar los datos del nuevo periodo academico y asi no se unan los datos del semestre pasado con el actual, en pocas palabras,
   añadir un boton que elimine todos los datos de la tabla que almacena las solicitudes.
+
+Fecha de documentacion: 22/04/2024
+
+- El error de dividir por cero ya fue corregido, el programa cumple con las expectativas, todos los resultados son igual a 0 cuando para dicha carrera no se ha realizado ninguna solicitud.
+
+- La plantilla para crear los pdf ya funciona, solamente hace falta organizar los pdfs como tal, todavia no se decide si se crean 10 pdfs y luego se unen, o se crea 1 solo pdf de 10 paginas, mañana se trabajara con eso.
