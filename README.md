@@ -1,3 +1,13 @@
+Fecha de documentacion: 23/04/2024
+
+- El programa ya genera el pdf con las 9 carreras que hay en el subprograma, pero necesito remover 2 carreras las cuales son topologia y minas porque esas no estan incluidas en estas extension, asi que debo eliminarla.
+
+- Debo de todavia solucionar el problema de ingresar solamente un numero entero con una longitud de entre 7 y 8 digitos, no puede ser un numero que se salga de esos parametrios.
+
+- Hay que enumeras las paginas, esto no es dificil, solamente me va tomar tiempo copiar y pegar, hay que recordar que es un programa muy especifico y no es muy adaptable, necesita mucho mas mantenimiento para lograrlo.
+
+- Tengo que integrar la funcionalidad de que con el boton se pueda generar el pdf, la funcion del pdf ya esta, lo que falta es integrarlo con la interfaz grafica para lograr que el programa ya sea funcional.
+
 Fecha de documentacion: 22/04/2024
 
 - El error de dividir por cero ya fue corregido, el programa cumple con las expectativas, todos los resultados son igual a 0 cuando para dicha carrera no se ha realizado ninguna solicitud.
