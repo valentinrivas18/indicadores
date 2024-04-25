@@ -3,8 +3,10 @@ from reportlab.lib.pagesizes import letter, A4
 from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
+import matplotlib.pyplot as plt
 from clase import *
 
+x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
 
 """En esta parte es donde se empieza a formar el pdf como tal, todo lo que hay anterior a esto son las variables que van a
 a ser incluidas en el pdf, nombre de la carrera, subprograma."""
@@ -17,6 +19,11 @@ tablai.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
 ]))
+plt.figure()
+ingi = plt.bar(x, graficoi)
+plt.savefig("101.jpg")
+c.drawImage("101.jpg", 110, 100, width=370, height=270)
+
 
 tablai.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tablai.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
@@ -26,7 +33,6 @@ c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
 c.drawString(160, 690, fechadi)
 c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
 c.drawString(150, 620, msjcarrerai)
-# c.drawImage("uno.jpg", 110, 100, width=370, height=270)
 c.drawString(250,350, "Descripcion Grafica")
 c.showPage()
 
@@ -35,7 +41,13 @@ tablap.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
 ]))
-
+plt.figure()
+plt.bar(x, graficop)
+# Etiquetas de los ejes
+plt.xlabel('Solicitudes')
+plt.ylabel('Porcentaje')
+plt.savefig("102.jpg")
+c.drawImage("102.jpg", 110, 100, width=370, height=270)
 tablap.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tablap.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
 c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -44,7 +56,6 @@ c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
 c.drawString(160, 690, fechadp)
 c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
 c.drawString(150, 620, msjcarrerap)
-# c.drawImage("uno.jpg", 110, 100, width=370, height=270)
 c.drawString(250,350, "Descripcion Grafica")
 c.showPage()
 
@@ -53,7 +64,13 @@ tablam.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
 ]))
-
+plt.figure()
+plt.bar(x, graficom)
+# Etiquetas de los ejes
+plt.xlabel('Solicitudes')
+plt.ylabel('Porcentaje')
+plt.savefig("103.jpg")
+c.drawImage("103.jpg", 110, 100, width=370, height=270)
 tablam.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tablam.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
 c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -71,7 +88,13 @@ tablac.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
 ]))
-
+plt.figure()
+plt.bar(x, graficoc)
+# Etiquetas de los ejes
+plt.xlabel('Solicitudes')
+plt.ylabel('Porcentaje')
+plt.savefig("104.jpg")
+c.drawImage("104.jpg", 110, 100, width=370, height=270)
 tablac.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tablac.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
 c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -89,6 +112,13 @@ tablalm.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
 ]))
+plt.figure()
+plt.bar(x, graficolm)
+
+plt.xlabel('Solicitudes')
+plt.ylabel('Porcentaje')
+plt.savefig("105.jpg")
+c.drawImage("105.jpg", 110, 100, width=370, height=270)
 
 tablalm.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tablalm.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
@@ -107,7 +137,12 @@ tablaA.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
 ]))
-
+plt.figure()
+plt.bar(x, graficoA)
+plt.xlabel('Solicitudes')
+plt.ylabel('Porcentaje')
+plt.savefig("106.jpg")
+c.drawImage("106.jpg", 110, 100, width=370, height=270)
 tablaA.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tablaA.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
 c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -125,7 +160,12 @@ tablatT.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
 ]))
-
+plt.figure()
+plt.bar(x, graficotT)
+plt.xlabel('Solicitudes')
+plt.ylabel('Porcentaje')
+plt.savefig("107.jpg")
+c.drawImage("107.jpg", 110, 100, width=370, height=270)
 tablatT.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tablatT.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
 c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -145,7 +185,12 @@ tablatC.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
 ]))
-
+plt.figure()
+plt.bar(x, graficotC)
+plt.xlabel('Solicitudes')
+plt.ylabel('Porcentaje')
+plt.savefig("108.jpg")
+c.drawImage("108.jpg", 110, 100, width=370, height=270)
 tablatC.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tablatC.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
 c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -163,6 +208,13 @@ tablatI.setStyle(TableStyle([
 ('GRID', (0, 0), (-1, -1), 1, colors.black),
 ('BOX', (0, 0), (-1, -1), 1, colors.black)
 ]))
+plt.figure()
+plt.bar(x, graficotI)
+# Etiquetas de los ejes
+plt.xlabel('Solicitudes')
+plt.ylabel('Porcentaje')
+plt.savefig("tsuinformatica.jpg")
+c.drawImage("tsuinformatica.jpg", 110, 100, width=370, height=270)
 
 tablatI.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
 tablatI.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
@@ -172,7 +224,6 @@ c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
 c.drawString(160, 690, fechadtI)
 c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
 c.drawString(150, 620, msjcarreratI)
-# c.drawImage("uno.jpg", 110, 100, width=370, height=270)
 c.drawString(250,350, "Descripcion Grafica")
 c.showPage()
 

@@ -72,6 +72,30 @@ class Plantilla:
         todas las filas ya que asi se hace mas facil y corto el codigo."""
         tabla = Table(encabezados + fila1)
         return tabla
+    def grafico(self):
+        db = solicitudesDB("localhost", "root", "valentin", "indic", "3307")
+        db.conectar()
+        total = db.TotalSCarrera(self.carrera)
+        db.TotalSoliPorCarr(self.carrera, 1)
+        def porcentaje(x):
+            try:
+                x = ((x * 100) / total)
+                vv = float("{:.2f}".format(x))
+            except ZeroDivisionError:
+                vv = 0
+            return vv
+        prcntg = [porcentaje(db.TotalSoliPorCarr(self.carrera, 1)),
+                porcentaje(db.TotalSoliPorCarr(self.carrera, 2)),
+                porcentaje(db.TotalSoliPorCarr(self.carrera, 3)),
+                porcentaje(db.TotalSoliPorCarr(self.carrera, 4)),
+                porcentaje(db.TotalSoliPorCarr(self.carrera, 5)),
+                porcentaje(db.TotalSoliPorCarr(self.carrera, 6)),
+                porcentaje(db.TotalSoliPorCarr(self.carrera, 7)),
+                porcentaje(db.TotalSoliPorCarr(self.carrera, 8)),
+                porcentaje(db.TotalSoliPorCarr(self.carrera, 9)),
+                porcentaje(db.TotalSoliPorCarr(self.carrera, 10))]
+        return prcntg
+
     def fecha(self):
         """Estas dos lineas de codigo sirven para que el pdf generado tenga como nombre la fecha y hora en la que se genero"""
         FA = datetime.datetime.now()
@@ -90,43 +114,52 @@ ING_i = Plantilla(101)
 tablai = ING_i.crear_tabla()
 msjcarrerai = ING_i.mensajecarrera()
 fechadi = ING_i.fecha()
+graficoi = ING_i.grafico()
 
 ING_p = Plantilla(102)
 tablap = ING_p.crear_tabla()
 msjcarrerap = ING_p.mensajecarrera()
 fechadp = ING_p.fecha()
+graficop = ING_p.grafico()
 
 ING_m = Plantilla(103)
 tablam = ING_m.crear_tabla()
 msjcarreram = ING_m.mensajecarrera()
 fechadm = ING_m.fecha()
+graficom = ING_m.grafico()
 
 ING_c = Plantilla(104)
 tablac = ING_c.crear_tabla()
 msjcarrerac = ING_c.mensajecarrera()
 fechadc = ING_c.fecha()
+graficoc = ING_c.grafico()
 
 LicM = Plantilla(105)
 tablalm = LicM.crear_tabla()
 msjcarreralm = LicM.mensajecarrera()
 fechadlm = LicM.fecha()
+graficolm = LicM.grafico()
 
 Arq = Plantilla(106)
 tablaA = Arq.crear_tabla()
 msjcarreraA = Arq.mensajecarrera()
 fechadA = Arq.fecha()
+graficoA = Arq.grafico()
 
 tsuT = Plantilla(107)
 tablatT = tsuT.crear_tabla()
 msjcarreratT = tsuT.mensajecarrera()
 fechadtT = tsuT.fecha()
+graficotT = tsuT.grafico()
 
 tsuC = Plantilla(108)
 tablatC = tsuC.crear_tabla()
 msjcarreratC = tsuC.mensajecarrera()
 fechadtC = tsuC.fecha()
+graficotC = tsuC.grafico()
 
 tsuI = Plantilla(109)
 tablatI = tsuI.crear_tabla()
 msjcarreratI = tsuI.mensajecarrera()
 fechadtI = tsuI.fecha()
+graficotI = tsuI.grafico()
