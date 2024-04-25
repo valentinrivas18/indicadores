@@ -23,9 +23,9 @@ class VentanaPrincipal:
         self.boton2.place(x=475, y=250)
 
         # Boton Consulta por subprograma
-        self.boton3 = tk.Button(self.ventana, text="Consulta por Subprograma", width=22, height=1, font=("Arial", 12)) 
-        self.boton3.pack()  # Colocar el botón en la posición predeterminada
-        self.boton3.place(x=445, y=316)
+        # self.boton3 = tk.Button(self.ventana, text="Consulta por Subprograma", width=22, height=1, font=("Arial", 12)) 
+        # self.boton3.pack()  # Colocar el botón en la posición predeterminada
+        # self.boton3.place(x=445, y=316)
 
         # Boton de agregar nuevo tipo de solicitud
         self.boton4 = tk.Button(self.ventana, text="ANTDS", font=("Arial", 12), command=self.abrir_antds)

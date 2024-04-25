@@ -40,7 +40,7 @@ class solicitudesDB:
     """ Esta funcion toma el total de solicitudes de la carrera que nosotros queramos,
     el dato de entrada para este parametro sera para indicar que carrera queremos consultar,
     aqui se clasifican por id, va desde la id 101 hasta la 109,
-    en el manual de sistema se encuentran las id de las carreras con su nombre y a
+    en el manual de usuarios se encuentran las id de las carreras con su nombre y a
     que tabla de la base de dato pertenecen. """
 
     def TotalSCarrera(self, IdCarrera):
