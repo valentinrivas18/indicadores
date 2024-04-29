@@ -36,7 +36,6 @@ class VentanaConsulta:
         self.cerrarventana.place(x=110, y=150)
     def cerrar_ventana(self):
             self.consultaventana.destroy()
-            self.desconectar()
 
 if __name__ == "__main__":
     consultaventana = tk.Tk()
