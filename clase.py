@@ -71,6 +71,7 @@ class Plantilla:
         """En esta parte ya se unifica los encabezados con las filas, en este caso yo hice una sola tabla para representar
         todas las filas ya que asi se hace mas facil y corto el codigo."""
         tabla = Table(encabezados + fila1)
+        db.desconectar()
         return tabla
     def grafico(self):
         db = solicitudesDB("localhost", "root", "valentin", "indic", "3307")
@@ -94,10 +95,12 @@ class Plantilla:
                 porcentaje(db.TotalSoliPorCarr(self.carrera, 8)),
                 porcentaje(db.TotalSoliPorCarr(self.carrera, 9)),
                 porcentaje(db.TotalSoliPorCarr(self.carrera, 10))]
+        db.desconectar()
         return prcntg
 
     def fecha(self):
-        """Estas dos lineas de codigo sirven para que el pdf generado tenga como nombre la fecha y hora en la que se genero"""
+        """Estas dos lineas de codigo sirven para que el pdf generado 
+           como nombre la fecha y hora en la que se genero"""
         FA = datetime.datetime.now()
         FechaPDF = FA.strftime("Fecha: "+"%d/%m/%Y")
         FF = FA.strftime("REPORTE-"+"%Iy%M"+"%p-"+"%Y%m%d"+".pdf")
@@ -107,6 +110,7 @@ class Plantilla:
         db = solicitudesDB("localhost", "root", "valentin", "indic", "3307")
         db.conectar()
         nombrecarrera = "SUBPROGRAMA: " + db.NombreCarrera(self.carrera)
+        db.desconectar()
         return nombrecarrera
 
 

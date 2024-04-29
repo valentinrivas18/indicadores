@@ -6,8 +6,13 @@ class VentanaAgregar:
     def __init__(self, agregarVentana):
         self.agregarVentana = agregarVentana
         self.agregarVentana.title("Agregar")
-        self.agregarVentana.geometry("800x600")
+        self.agregarVentana.geometry("400x400")
         self.agregarVentana.resizable(width=False, height=False)
+        self.agregarVentana.iconbitmap("icon.ico")
+        self.agregarVentana.resizable(width=False, height=False)
+        self.agregarVentana.configure(background='#ffffff')
+        self.coloruniversal="#ff8000"
+        self.agregarVentana.iconbitmap("icon.ico")
         self.agregarVentana.grab_set()
 
         conexion = mysql.connector.connect(
@@ -19,52 +24,47 @@ class VentanaAgregar:
         )
 
         connection = conexion.cursor()
-
         # Realizar una consulta para obtener los registros del campo deseado
-        
         query1 = "SELECT solicitud FROM solicitudes"
         connection.execute(query1)
-        registros = [registro[0] for registro in connection]
-        
+        solicitudes = [registro[0] for registro in connection]
         query2 = "SELECT carrera FROM subprograma"
         connection.execute(query2)
-        registros2 = [registro[0] for registro in connection]
-
-
-        #Lista desplegable1
-       
-        self.opcionSeleccionada = tk.StringVar()
-        self.lista_desplegable = ttk.Combobox(self.agregarVentana, textvariable=self.opcionSeleccionada, state="readonly")
-        self.lista_desplegable['values'] = registros2
-        self.lista_desplegable.pack()
-        self.lista_desplegable.place(x=50, y=60)
-        #Lista desplegable2
-        self.opcionSeleccionada2 = tk.StringVar()
-        self.lista_desplegable2 = ttk.Combobox(self.agregarVentana, textvariable=self.opcionSeleccionada2, state="readonly")
-        self.lista_desplegable2['values'] = registros
-        self.lista_desplegable2.pack()
-        self.lista_desplegable2.place(x=50, y=130)
-        #label text lista 1
-        self.label1 = tk.Label(agregarVentana, text="Subprograma: ")
-        self.label1.pack()
-        self.label1.place(x=50, y= 30)
-        #label text lista 1
-        self.label2 = tk.Label(agregarVentana, text="Tipo de solicitud: ")
-        self.label2.pack()
-        self.label2.place(x=50, y=100)
+        subprograma = [registro[0] for registro in connection]
+        
         # textbox de la cedula
         self.cedula_texto = tk.Entry(agregarVentana)
         self.cedula_texto.pack()
-        self.cedula_texto.place(x=300, y=60)
+        self.cedula_texto.place(x=220, y=40, width=10, height=1)
         # label text paracedula
-        self.labelcedula = tk.Label(agregarVentana, text="Cedula")
+        self.labelcedula = tk.Label(agregarVentana, text="Cedula", width=10, height=1)
         self.labelcedula.pack()
-        self.labelcedula.place(x=300, y=30)
-        # boton para agregar
+        self.labelcedula.place(x=200, y=20)
+        #label de la lista subprograma
+        self.label1 = tk.Label(agregarVentana, text="Subprograma: ", width=10, height=1)
+        self.label1.pack()
+        self.label1.place(x=0, y=0)
+        #Lista de subprograma
+        self.opcionSeleccionada = tk.StringVar()
+        self.lista_desplegable = ttk.Combobox(self.agregarVentana, textvariable=self.opcionSeleccionada, state="readonly",width=10, height=1)
+        self.lista_desplegable['values'] = subprograma
+        self.lista_desplegable.pack()
+        self.lista_desplegable.place(x=0, y=0)
+        #label de la lista solicitud
+        self.label2 = tk.Label(agregarVentana, text="Tipo de solicitud: ",width=10, height=1)
+        self.label2.pack()
+        self.label2.place(x=0, y=0)
+        #Lista de solicitudes
+        self.opcionSeleccionada2 = tk.StringVar()
+        self.lista_desplegable2 = ttk.Combobox(self.agregarVentana, textvariable=self.opcionSeleccionada2, state="readonly",width=10, height=1)
+        self.lista_desplegable2['values'] = solicitudes
+        self.lista_desplegable2.pack()
+        self.lista_desplegable2.place(x=0, y=0)
+        
         # Boton Agregar
-        self.botonAgregar = tk.Button(agregarVentana, text="Agregar", command=self.agregar) 
+        self.botonAgregar = tk.Button(agregarVentana, text="Agregar", command=self.agregar,width=10, height=1) 
         self.botonAgregar.pack()  # Colocar el botón en la posición predeterminada
-        self.botonAgregar.place(x=250, y=200)
+        self.botonAgregar.place(x=0, y=0)
         
         
     def agregar(self):
@@ -109,7 +109,6 @@ class VentanaAgregar:
         conexion.commit()
         print("dato insertado")
         messagebox.showinfo("Confirmación", "El dato ha sido ingresado correctamente.")
-        
    
         
 if __name__ == "__main__":

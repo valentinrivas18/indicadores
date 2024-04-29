@@ -6,6 +6,7 @@ from reportlab.pdfgen import canvas
 import matplotlib.pyplot as plt
 from clase import *
 from tkinter import filedialog
+from tkinter import messagebox
 
 x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
 
@@ -185,8 +186,6 @@ class generador:
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
 
-
-
         """Tsu construccion civil"""
         tablatC.setStyle(TableStyle([
         ('GRID', (0, 0), (-1, -1), 1, colors.black),
@@ -235,7 +234,6 @@ class generador:
         c.showPage()
 
         c.save()
-
         ruta = filedialog.asksaveasfilename(defaultextension=".pdf")
 
         # Mueve el archivo generado a la ubicación seleccionada por el usuario
@@ -254,10 +252,12 @@ class generador:
                         archivo_original.close()
                         archivo_destino.close()
                         print("Archivo movido exitosamente")
+                        messagebox.showinfo("Notificacion", "El archivo se ha guardado exitosamente")
                     except Exception as e:
                         print("Error al mover el archivo", str(e))
+                        messagebox.showinfo("Notificacion", "Error al mover el archivo")
                 else:
                     print("El archivo ya está en la ubicación seleccionada")
             else:
                 print("No se ha seleccionado una ubicación")
-
+        
