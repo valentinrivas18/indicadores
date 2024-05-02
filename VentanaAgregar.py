@@ -81,8 +81,15 @@ class VentanaAgregar:
         self.botonAgregar = tk.Button(agregarVentana, text="Agregar", command=self.agregar,width=10, height=1,font=("Arial",12,"bold"),background=self.coloruniversal,fg="white",) 
         self.botonAgregar.pack()  # Colocar el botón en la posición predeterminada
         self.botonAgregar.place(x=150, y=400)
+
+        # Boton Cerrar
+        self.botonCerrar = tk.Button(agregarVentana, text="Cerrar", command=self.cerrar_ventana,width=10, height=1,font=("Arial",12,"bold"),background=self.coloruniversal,fg="white",) 
+        self.botonCerrar.pack()  # Colocar el botón en la posición predeterminada
+        self.botonCerrar.place(x=150, y=450)
         
 
+    def cerrar_ventana(self):
+                self.agregarVentana.destroy()
     def agregar(self):
         conexion = mysql.connector.connect(
         host="localhost",
@@ -94,16 +101,27 @@ class VentanaAgregar:
         cursor = conexion.cursor()
         #obteniendo datos del combobox1 (el id de la carrera)
         dato_seleccionado = self.opcionSeleccionada.get()
+        if dato_seleccionado:
+            print(dato_seleccionado)
+        else:
+            messagebox.showerror("Campo Vacío", 
+                             "Por favor, ingrese texto antes de imprimir.")
         query = "SELECT id_carrera FROM subprograma WHERE carrera = %s"
         cursor.execute(query, (dato_seleccionado,))
         resultado = cursor.fetchall()
         cursor.fetchall()
         conexion.commit()
+        
         mi_tupla = tuple(resultado)
         entero = int(mi_tupla[0][0])
         print(entero)
         #obteniendo datos del combobox2 (el id de la solicitud)
         dato_seleccionado2 = self.opcionSeleccionada2.get()
+        if dato_seleccionado2:
+            print(dato_seleccionado2)
+        else:
+            messagebox.showerror("Campo Vacío", 
+                             "Por favor, ingrese texto antes de imprimir.")
         query = "SELECT id_solicitud FROM solicitudes WHERE solicitud = %s"
         cursor.execute(query, (dato_seleccionado2,))
         resultado2 = cursor.fetchall()
@@ -114,8 +132,12 @@ class VentanaAgregar:
         print(entero2)
         #obteniendo datos del textbox (la cedula)
         texto = self.cedula_texto.get()
+        if texto:
+            print(texto)
+        else:
+            messagebox.showerror("Campo Vacío", 
+                             "Por favor, ingrese texto antes de imprimir.")
         entero3 = int(texto)
-        
         estudianteint = "INSERT INTO estudiante (cedula) VALUES (%s)"
         cursor.execute(estudianteint, (entero3,))
         conexion.commit()
@@ -125,6 +147,7 @@ class VentanaAgregar:
         conexion.commit()
         print("dato insertado")
         messagebox.showinfo("Confirmación", "El dato ha sido ingresado correctamente.")
+        conexion.close()
    
         
 if __name__ == "__main__":
