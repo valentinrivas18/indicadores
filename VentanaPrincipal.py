@@ -3,6 +3,7 @@ from tkinter import *
 from VentanaAgregar import VentanaAgregar
 from VentanaAntds import VentanaAntds
 from VentanaConsulta import *
+from VentanaEstudiante import *
 from PIL import Image, ImageTk
 
 class VentanaPrincipal:
@@ -16,7 +17,7 @@ class VentanaPrincipal:
         self.ventana.iconbitmap("icon.ico")
         
         self.bienvenido = tk.Label(self.ventana,font=("Arial", "14","bold"),background="#ffffff",
-        text="Programa de Ciencias Basicas y Aplicadas 2024 \n \n Generador de Reporte Semestral")
+        text="Programa de Ciencias Basicas y Aplicadas \n \n Generador de Reporte Semestral")
         self.bienvenido.pack()
         self.bienvenido.place(x=140,y=20)
 
@@ -33,7 +34,6 @@ class VentanaPrincipal:
         self.label.place(x=0,y=0)
         # -------------------- #
 
-
         # gobierno bolivariano de venezuela
         self.gob = Image.open("gobierno.jpg")
         self.gobtamano = (720, 40)
@@ -44,7 +44,6 @@ class VentanaPrincipal:
         self.labelgobierno = tk.Label(ventana, image=self.gobimagen, background="#ffffff")
         self.labelgobierno.pack()
         self.labelgobierno.place(x=0,y=405)
-
 
         # Boton Agregar
         self.boton1 = tk.Button(self.ventana, fg="white",text="Agregar", width=15, height=1,
@@ -63,7 +62,7 @@ class VentanaPrincipal:
         # self.boton3.place(x=445, y=316)
 
         # Boton de agregar nuevo tipo de solicitud
-        self.boton4 = tk.Button(self.ventana,fg="white",background=self.coloruniversal, text="ANTDS", font=("Arial", 12,"bold"), width=15, height=1, command=self.abrir_antds)
+        self.boton4 = tk.Button(self.ventana,fg="white",background=self.coloruniversal, text="Reiniciar BD", font=("Arial", 12,"bold"), width=15, height=1, command=self.abrir_antds)
         self.boton4.pack()
         self.boton4.place(x=300,y=220)
 
@@ -71,11 +70,15 @@ class VentanaPrincipal:
         self.ventana = tk.Button(self.ventana,fg="white",background=self.coloruniversal, text="Cerrar", font=("Arial", 12,"bold"), width=15, height=1, command=self.cerrarW)
         self.ventana.pack()
         self.ventana.place(x=300,y=270)
-        
 
     def cerrarW(self):
             self.ventana.destroy()
             exit()
+
+    def abrir_estudiante(self):
+         self.ventana_estudiante = tk.Toplevel(self.ventana)
+         self.app = estudiante = VentanaEstudiante(self.ventana_estudiante)
+
     def abrir_antds(self):
         self.ventana_antds = tk.Toplevel(self.ventana)
         self.app_antds = VentanaAntds(self.ventana_antds)
