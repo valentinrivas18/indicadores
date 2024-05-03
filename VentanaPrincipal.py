@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from VentanaAgregar import VentanaAgregar
-from VentanaAntds import VentanaAntds
+from VentanaBorrar import VentanaBorrar
 from VentanaConsulta import *
 from VentanaEstudiante import *
 from PIL import Image, ImageTk
@@ -67,8 +67,8 @@ class VentanaPrincipal:
         # self.boton3.pack()  # Colocar el botón en la posición predeterminada
         # self.boton3.place(x=445, y=316)
 
-        # Boton de agregar nuevo tipo de solicitud
-        self.boton4 = tk.Button(self.ventana,fg="white",background=self.coloruniversal, text="Reiniciar BD", font=("Arial", 12,"bold"), width=15, height=1, command=self.abrir_antds)
+        # Boton de borrar
+        self.boton4 = tk.Button(self.ventana,fg="white",background=self.coloruniversal, text="Reiniciar BD", font=("Arial", 12,"bold"), width=15, height=1, command=self.abrir_borrar)
         self.boton4.pack()
         self.boton4.place(x=300,y=270)
 
@@ -85,9 +85,9 @@ class VentanaPrincipal:
          self.ventana_estudiante = tk.Toplevel(self.ventana)
          self.app_estudiante = VentanaEstudiante(self.ventana_estudiante)
 
-    def abrir_antds(self):
-        self.ventana_antds = tk.Toplevel(self.ventana)
-        self.app_antds = VentanaAntds(self.ventana_antds)
+    def abrir_borrar(self):
+        self.ventana_borrar = tk.Toplevel(self.ventana)
+        self.app_borrar = VentanaBorrar(self.ventana_borrar)
         
     def abrir_agregar(self):
         self.ventana_agregar = tk.Toplevel(self.ventana)
