@@ -5,8 +5,8 @@ import mysql.connector
 class VentanaAntds:
     def __init__(self, antdsVentana):
         self.antdsVentana = antdsVentana
-        self.antdsVentana.title("Agregar nuevo tipo de solicitud")
-        self.antdsVentana.geometry("800x600")
+        self.antdsVentana.title("Reiniciar Base de Datos")
+        self.antdsVentana.geometry("500x400")
         self.antdsVentana.resizable(width=False, height=False)
         self.antdsVentana.grab_set()
 
@@ -14,18 +14,20 @@ class VentanaAntds:
         self.solic_texto.pack()
         self.solic_texto.place(x=300, y=130)
 
-        self.labelsolic = tk.Label(self.antdsVentana, text="Solicitud")
-        self.labelsolic.pack()
-        self.labelsolic.place(x=300, y=100)
-
-        self.labeltitulo = tk.Label(self.antdsVentana, text="Agregar nuevo tipo de solicitud", font=("Arial", 18))
+        self.labeltitulo = tk.Label(self.antdsVentana, text="Reiniciar Base de Datos", font=("Arial", 18))
         self.labeltitulo.pack()
-        self.labeltitulo.place(x=250, y=50)
+        self.labeltitulo.place(x=100, y=50)
+
+        self.labelinfo = tk.Label(self.antdsVentana,
+                                  text="Al presionar el boton BORRAR, usted procedera a eliminar todos \n los registros y solicitudes del sistema. \n Si no esta seguro de realizar esta operacion consulte con el personal \n administrativo capacitado.",
+                                  font=("Arial", 12))
+        self.labelinfo.pack()
+        self.labelinfo.place(x=10, y=100)
         
         
-        self.botonsoli = tk.Button(self.antdsVentana, text="Agregar", command=self.insertar)
+        self.botonsoli = tk.Button(self.antdsVentana, text="BORRAR", command=self.insertar, font=("Arial",15))
         self.botonsoli.pack()
-        self.botonsoli.place(x=280, y=170)
+        self.botonsoli.place(x=220, y=200)
         
     def insertar(self):
         texto = self.solic_texto.get()

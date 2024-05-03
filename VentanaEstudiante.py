@@ -72,37 +72,6 @@ class VentanaEstudiante:
         port="3307"
         )
         cursor = conexion.cursor()
-        #obteniendo datos del combobox1 (el id de la carrera)
-        dato_seleccionado = self.opcionSeleccionada.get()
-        if dato_seleccionado:
-            print(dato_seleccionado)
-        else:
-            messagebox.showerror("Campo Vacío", 
-                             "Por favor, ingrese texto antes de imprimir.")
-        query = "SELECT id_carrera FROM subprograma WHERE carrera = %s"
-        cursor.execute(query, (dato_seleccionado,))
-        resultado = cursor.fetchall()
-        cursor.fetchall()
-        conexion.commit()
-        
-        mi_tupla = tuple(resultado)
-        entero = int(mi_tupla[0][0])
-        print(entero)
-        #obteniendo datos del combobox2 (el id de la solicitud)
-        dato_seleccionado2 = self.opcionSeleccionada2.get()
-        if dato_seleccionado2:
-            print(dato_seleccionado2)
-        else:
-            messagebox.showerror("Campo Vacío", 
-                             "Por favor, ingrese texto antes de imprimir.")
-        query = "SELECT id_solicitud FROM solicitudes WHERE solicitud = %s"
-        cursor.execute(query, (dato_seleccionado2,))
-        resultado2 = cursor.fetchall()
-        cursor.fetchall()
-        conexion.commit()
-        mi_tupla2 = tuple(resultado2)
-        entero2 = int(mi_tupla2[0][0])
-        print(entero2)
         #obteniendo datos del textbox (la cedula)
         texto = self.cedula_texto.get()
         if texto:
@@ -114,12 +83,8 @@ class VentanaEstudiante:
         estudianteint = "INSERT INTO estudiante (cedula) VALUES (%s)"
         cursor.execute(estudianteint, (entero3,))
         conexion.commit()
-        
-        insertar = "INSERT INTO VinculoSolicitud (id_carrera, id_solicitud, cedula) VALUES (%s, %s, %s)"
-        cursor.execute(insertar, (entero, entero2, entero3))
-        conexion.commit()
-        print("dato insertado")
-        messagebox.showinfo("Confirmación", "El dato ha sido ingresado correctamente.")
+        print("Estudiante insertado.")
+        messagebox.showinfo("Confirmación", "El estudiante ha sido registrado correctamente.")
         conexion.close()
    
 if __name__ == "__main__":
