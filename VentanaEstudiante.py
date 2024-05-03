@@ -14,6 +14,11 @@ class VentanaEstudiante:
         self.coloruniversal="#ff8000"
         self.EstudianteVentana.iconbitmap("icon.ico")
         self.EstudianteVentana.grab_set()
+
+        # Verificar si la cédula ya existe en la tabla
+        
+
+
         def validate_input(new_value):
             if new_value == "":
                 return True
@@ -73,19 +78,30 @@ class VentanaEstudiante:
         )
         cursor = conexion.cursor()
         #obteniendo datos del textbox (la cedula)
+
         texto = self.cedula_texto.get()
         if texto:
-            print(texto)
+            print("La cedula introducida es: ",texto)
+            cursor.execute("SELECT * FROM estudiante WHERE cedula = %s", (texto,))
+            resultado = cursor.fetchone()
+            if resultado:
+                messagebox.showerror("Error", "La cédula ya existe en la base de datos")
+            else:
+                entero3 = int(texto)
+                estudianteint = "INSERT INTO estudiante (cedula) VALUES (%s)"
+                cursor.execute(estudianteint, (entero3,))
+                conexion.commit()
+                print("Cedula insertada en la base de datos.")
+                messagebox.showinfo("Confirmación", "El estudiante ha sido registrado correctamente.")
+                conexion.close()
         else:
+            print("No se ingreso ninguna cedula, el campo esta vacio.")
             messagebox.showerror("Campo Vacío", 
-                             "Por favor, ingrese texto antes de imprimir.")
-        entero3 = int(texto)
-        estudianteint = "INSERT INTO estudiante (cedula) VALUES (%s)"
-        cursor.execute(estudianteint, (entero3,))
-        conexion.commit()
-        print("Estudiante insertado.")
-        messagebox.showinfo("Confirmación", "El estudiante ha sido registrado correctamente.")
-        conexion.close()
+                             "Por favor, ingrese la cedula.")
+            
+        
+
+        
    
 if __name__ == "__main__":
     ventana = tk.Tk()
