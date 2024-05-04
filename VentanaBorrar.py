@@ -21,7 +21,7 @@ class VentanaBorrar:
         self.tkimagen = ImageTk.PhotoImage(self.imagen_redimensionada)
 
         # Mostrar la imagen en un Label
-        self.label = tk.Label(ventana, image=self.tkimagen, background="#ffffff")
+        self.label = tk.Label(self.BorrarVentana, image=self.tkimagen, background="#ffffff")
         self.label.pack()
         self.label.place(x=0,y=0)
         # -------------------- #
