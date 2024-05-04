@@ -11,7 +11,8 @@ from conx import solicitudesDB
 class Plantilla:
     def __init__(self, carrera):
         self.carrera = carrera
-    
+        db = solicitudesDB("localhost", "root", "valentin", "indic", "3307")
+        db.conectar()
     def crear_tabla(self):
         """Conexion a la base de datos"""
         db = solicitudesDB("localhost", "root", "valentin", "indic", "3307")
@@ -73,6 +74,7 @@ class Plantilla:
         tabla = Table(encabezados + fila1)
         db.desconectar()
         return tabla
+
     def grafico(self):
         db = solicitudesDB("localhost", "root", "valentin", "indic", "3307")
         db.conectar()

@@ -234,6 +234,7 @@ class generador:
         c.showPage()
 
         c.save()
+        
         ruta = filedialog.asksaveasfilename(defaultextension=".pdf")
 
         # Mueve el archivo generado a la ubicación seleccionada por el usuario

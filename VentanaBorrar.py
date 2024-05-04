@@ -1,36 +1,55 @@
 import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
+from conx import solicitudesDB
+from PIL import Image, ImageTk
 
 class VentanaBorrar:
     def __init__(self, BorrarVentana):
         self.BorrarVentana = BorrarVentana
         self.BorrarVentana.title("Reiniciar Base de Datos")
-        self.BorrarVentana.geometry("500x400")
+        self.BorrarVentana.geometry("500x300")
         self.BorrarVentana.resizable(width=False, height=False)
+        self.BorrarVentana.configure(background='#ffffff')
+        self.coloruniversal="#ff8000"
+        self.BorrarVentana.iconbitmap("icon.ico")
         self.BorrarVentana.grab_set()
 
-        self.solic_texto = tk.Entry(self.BorrarVentana)
-        self.solic_texto.pack()
-        self.solic_texto.place(x=300, y=130)
+        self.imagen = Image.open("pcba.jpg")
+        self.tamano_imagen_deseado = (100, 100)
+        self.imagen_redimensionada = self.imagen.resize(self.tamano_imagen_deseado)
+        self.tkimagen = ImageTk.PhotoImage(self.imagen_redimensionada)
 
-        self.labeltitulo = tk.Label(self.BorrarVentana, text="Reiniciar Base de Datos", font=("Arial", 18))
+        # Mostrar la imagen en un Label
+        self.label = tk.Label(ventana, image=self.tkimagen, background="#ffffff")
+        self.label.pack()
+        self.label.place(x=0,y=0)
+        # -------------------- #
+
+        self.labeltitulo = tk.Label(self.BorrarVentana, text="Reiniciar Base de Datos", font=("Arial", 18),background="#ffffff")
         self.labeltitulo.pack()
-        self.labeltitulo.place(x=100, y=50)
+        self.labeltitulo.place(x=100, y=40)
 
         self.labelinfo = tk.Label(self.BorrarVentana,
-                                  text="Al presionar el boton BORRAR, usted procedera a eliminar todos \n los registros y solicitudes del sistema. \n Si no esta seguro de realizar esta operacion consulte con el personal \n administrativo capacitado.",
-                                  font=("Arial", 12))
+                                  text="Al presionar el boton BORRAR, usted procedera a eliminar todos los registros y solicitudes del sistema. Si no esta seguro de realizar esta operacion consulte con el personal administrativo capacitado.",
+                                  font=("Arial", 12),justify="left", wraplength=500, background="#ffffff")
         self.labelinfo.pack()
         self.labelinfo.place(x=10, y=100)
         
         
-        self.botonsoli = tk.Button(self.BorrarVentana, text="BORRAR", command=self.borrar, font=("Arial",15))
+        self.botonsoli = tk.Button(self.BorrarVentana, text="BORRAR", command=self.borrar, width=10, height=1,font=("Arial",15,"bold"),background=self.coloruniversal,fg="white",)
         self.botonsoli.pack()
-        self.botonsoli.place(x=220, y=200)
+        self.botonsoli.place(x=180, y=170)
+
+        # Boton Cerrar
+        self.botonCerrar = tk.Button(self.BorrarVentana, text="Cerrar", command=self.cerrar_ventana,width=10, height=1,font=("Arial",12,"bold"),background=self.coloruniversal,fg="white",) 
+        self.botonCerrar.pack()  # Colocar el botón en la posición predeterminada
+        self.botonCerrar.place(x=190, y=230)
         
+
+    def cerrar_ventana(self):
+        self.BorrarVentana.destroy()        
     def borrar(self):
-        texto = self.solic_texto.get()
         conexion = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -45,6 +64,7 @@ class VentanaBorrar:
             query = "SET SQL_SAFE_UPDATES = 0;"
             query2 = "SET FOREIGN_KEY_CHECKS = 0"
             query3 = "DELETE FROM VinculoSolicitud"
+            query9 = "DELETE FROM estudiante"
             query4 = "ALTER TABLE VinculoSolicitud AUTO_INCREMENT = 0"
             query5 = "TRUNCATE TABLE VinculoSolicitud"
             query6 = "ALTER TABLE VinculoSolicitud AUTO_INCREMENT = 1; "
@@ -53,6 +73,7 @@ class VentanaBorrar:
             cursor.execute(query)
             cursor.execute(query2)
             cursor.execute(query3)
+            cursor.execute(query9)
             cursor.execute(query4)
             cursor.execute(query5)
             cursor.execute(query6)
