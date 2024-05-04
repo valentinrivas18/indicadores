@@ -99,23 +99,18 @@ class VentanaAgregar:
         port="3307"
         )
         cursor = conexion.cursor()
-        #obteniendo datos del combobox1 (el id de la carrera)
+        # Obteniendo Datos del ComboBox (Carrera)
         dato_seleccionado = self.opcionSeleccionada.get()
-        if dato_seleccionado:
-            print(dato_seleccionado)
-        else:
-            messagebox.showerror("Campo Vacío", 
-                             "Por favor, ingrese texto antes de imprimir.")
         query = "SELECT id_carrera FROM subprograma WHERE carrera = %s"
         cursor.execute(query, (dato_seleccionado,))
         resultado = cursor.fetchall()
         cursor.fetchall()
         conexion.commit()
-        
         mi_tupla = tuple(resultado)
         entero = int(mi_tupla[0][0])
         print(entero)
-        #obteniendo datos del combobox2 (el id de la solicitud)
+
+        # Obteniendo Datos del ComboBox (Carrera)
         dato_seleccionado2 = self.opcionSeleccionada2.get()
         if dato_seleccionado2:
             print(dato_seleccionado2)
@@ -133,14 +128,18 @@ class VentanaAgregar:
         #obteniendo datos del textbox (la cedula)
         texto = self.cedula_texto.get()
         if texto:
-            print(texto)
+            print("La cedula introducida es: ",texto)
+            cursor.execute("SELECT * FROM estudiante WHERE cedula = %s", (texto,))
+            resultado = cursor.fetchone()
+            if resultado:
+                entero3 = int(texto)
+                # estudianteint = "INSERT INTO estudiante (cedula) VALUES (%s)"
+                # cursor.execute(estudianteint, (entero3,))
+                # conexion.commit()
         else:
             messagebox.showerror("Campo Vacío", 
-                             "Por favor, ingrese texto antes de imprimir.")
-        entero3 = int(texto)
-        estudianteint = "INSERT INTO estudiante (cedula) VALUES (%s)"
-        cursor.execute(estudianteint, (entero3,))
-        conexion.commit()
+                             "No se ingreso ninguna cedula, el campo esta vacio.")
+        
         
         insertar = "INSERT INTO VinculoSolicitud (id_carrera, id_solicitud, cedula) VALUES (%s, %s, %s)"
         cursor.execute(insertar, (entero, entero2, entero3))
