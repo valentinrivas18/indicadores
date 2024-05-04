@@ -4,11 +4,65 @@ from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
 import matplotlib.pyplot as plt
-from clase import *
+from clase import Plantilla
 from tkinter import filedialog
 from tkinter import messagebox
 
 x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
+
+ING_i = Plantilla(101)
+tablai = ING_i.crear_tabla()
+msjcarrerai = ING_i.mensajecarrera()
+fechadi = ING_i.fecha()
+graficoi = ING_i.grafico()
+
+ING_p = Plantilla(102)
+tablap = ING_p.crear_tabla()
+msjcarrerap = ING_p.mensajecarrera()
+fechadp = ING_p.fecha()
+graficop = ING_p.grafico()
+
+ING_m = Plantilla(103)
+tablam = ING_m.crear_tabla()
+msjcarreram = ING_m.mensajecarrera()
+fechadm = ING_m.fecha()
+graficom = ING_m.grafico()
+
+ING_c = Plantilla(104)
+tablac = ING_c.crear_tabla()
+msjcarrerac = ING_c.mensajecarrera()
+fechadc = ING_c.fecha()
+graficoc = ING_c.grafico()
+
+LicM = Plantilla(105)
+tablalm = LicM.crear_tabla()
+msjcarreralm = LicM.mensajecarrera()
+fechadlm = LicM.fecha()
+graficolm = LicM.grafico()
+
+Arq = Plantilla(106)
+tablaA = Arq.crear_tabla()
+msjcarreraA = Arq.mensajecarrera()
+fechadA = Arq.fecha()
+graficoA = Arq.grafico()
+
+tsuT = Plantilla(107)
+tablatT = tsuT.crear_tabla()
+msjcarreratT = tsuT.mensajecarrera()
+fechadtT = tsuT.fecha()
+graficotT = tsuT.grafico()
+
+tsuC = Plantilla(108)
+tablatC = tsuC.crear_tabla()
+msjcarreratC = tsuC.mensajecarrera()
+fechadtC = tsuC.fecha()
+graficotC = tsuC.grafico()
+
+tsuI = Plantilla(109)
+tablatI = tsuI.crear_tabla()
+msjcarreratI = tsuI.mensajecarrera()
+fechadtI = tsuI.fecha()
+graficotI = tsuI.grafico()
 
 class generador:
     def __init__(self):
@@ -29,8 +83,8 @@ class generador:
         
         plt.figure()
         ingi = plt.bar(x, graficoi)
-        plt.savefig("101.jpg")
-        c.drawImage("101.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/101.jpg")
+        c.drawImage("graficos/101.jpg", 110, 100, width=370, height=270)
 
 
         tablai.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
@@ -54,8 +108,8 @@ class generador:
         # Etiquetas de los ejes
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("102.jpg")
-        c.drawImage("102.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/102.jpg")
+        c.drawImage("graficos/102.jpg", 110, 100, width=370, height=270)
         tablap.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablap.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
         c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -77,8 +131,8 @@ class generador:
         # Etiquetas de los ejes
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("103.jpg")
-        c.drawImage("103.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/103.jpg")
+        c.drawImage("graficos/103.jpg", 110, 100, width=370, height=270)
         tablam.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablam.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
         c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -101,8 +155,8 @@ class generador:
         # Etiquetas de los ejes
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("104.jpg")
-        c.drawImage("104.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/104.jpg")
+        c.drawImage("graficos/104.jpg", 110, 100, width=370, height=270)
         tablac.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablac.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
         c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -125,8 +179,8 @@ class generador:
 
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("105.jpg")
-        c.drawImage("105.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/106.jpg")
+        c.drawImage("graficos/106.jpg", 110, 100, width=370, height=270)
 
         tablalm.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablalm.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
@@ -172,8 +226,8 @@ class generador:
         plt.bar(x, graficotT)
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("107.jpg")
-        c.drawImage("107.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/107.jpg")
+        c.drawImage("graficos/107.jpg", 110, 100, width=370, height=270)
         tablatT.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablatT.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
         c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -195,8 +249,8 @@ class generador:
         plt.bar(x, graficotC)
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("108.jpg")
-        c.drawImage("108.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/108.jpg")
+        c.drawImage("graficos/108.jpg", 110, 100, width=370, height=270)
         tablatC.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablatC.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
         c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
@@ -219,8 +273,8 @@ class generador:
         # Etiquetas de los ejes
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("tsuinformatica.jpg")
-        c.drawImage("tsuinformatica.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/109.jpg.jpg")
+        c.drawImage("graficos/109.jpg.jpg", 110, 100, width=370, height=270)
 
         tablatI.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablatI.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
