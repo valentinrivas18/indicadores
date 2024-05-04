@@ -90,6 +90,7 @@ class VentanaAgregar:
 
     def cerrar_ventana(self):
                 self.agregarVentana.destroy()
+    
     def agregar(self):
         conexion = mysql.connector.connect(
         host="localhost",
@@ -99,56 +100,70 @@ class VentanaAgregar:
         port="3307"
         )
         cursor = conexion.cursor()
-        # Obteniendo Datos del ComboBox (Carrera)
-        dato_seleccionado = self.opcionSeleccionada.get()
-        query = "SELECT id_carrera FROM subprograma WHERE carrera = %s"
-        cursor.execute(query, (dato_seleccionado,))
-        resultado = cursor.fetchall()
-        cursor.fetchall()
-        conexion.commit()
-        mi_tupla = tuple(resultado)
-        entero = int(mi_tupla[0][0])
-        print(entero)
 
         # Obteniendo Datos del ComboBox (Carrera)
+        dato_seleccionado = self.opcionSeleccionada.get()
+
+        # Obteniendo Datos del ComboBox2 (Carrera)
         dato_seleccionado2 = self.opcionSeleccionada2.get()
-        if dato_seleccionado2:
-            print(dato_seleccionado2)
-        else:
-            messagebox.showerror("Campo Vacío", 
-                             "Por favor, ingrese texto antes de imprimir.")
-        query = "SELECT id_solicitud FROM solicitudes WHERE solicitud = %s"
-        cursor.execute(query, (dato_seleccionado2,))
-        resultado2 = cursor.fetchall()
-        cursor.fetchall()
-        conexion.commit()
-        mi_tupla2 = tuple(resultado2)
-        entero2 = int(mi_tupla2[0][0])
-        print(entero2)
-        #obteniendo datos del textbox (la cedula)
+
+        # Obteniendo Datos del Textbox (Cedula)
         texto = self.cedula_texto.get()
-        if texto:
-            print("La cedula introducida es: ",texto)
-            cursor.execute("SELECT * FROM estudiante WHERE cedula = %s", (texto,))
-            resultado = cursor.fetchone()
-            if resultado:
-                entero3 = int(texto)
-                # estudianteint = "INSERT INTO estudiante (cedula) VALUES (%s)"
-                # cursor.execute(estudianteint, (entero3,))
-                # conexion.commit()
+
+        """Comprobando que el campo cedula existe, y que los demas no estan vacios."""
+
+        if texto == "" and dato_seleccionado == "" and dato_seleccionado2 == "":
+            messagebox.showerror("Error", 
+                        "Todos los campos estan vacios.")
         else:
-            messagebox.showerror("Campo Vacío", 
-                             "No se ingreso ninguna cedula, el campo esta vacio.")
-        
-        
-        insertar = "INSERT INTO VinculoSolicitud (id_carrera, id_solicitud, cedula) VALUES (%s, %s, %s)"
-        cursor.execute(insertar, (entero, entero2, entero3))
-        conexion.commit()
-        print("dato insertado")
-        messagebox.showinfo("Confirmación", "El dato ha sido ingresado correctamente.")
-        conexion.close()
-   
-        
+            if texto:
+                print("La cedula introducida es: ",texto)
+                cursor.execute("SELECT * FROM estudiante WHERE cedula = %s", (texto,))
+                resultado = cursor.fetchone()
+                print("hola", resultado)
+                if resultado:
+                    entero3 = int(texto)
+                    # estudianteint = "INSERT INTO estudiante (cedula) VALUES (%s)"
+                    # cursor.execute(estudianteint, (entero3,))
+                    # conexion.commit()
+                    if dato_seleccionado == "":
+                        messagebox.showerror("Campo Vacío", 
+                                            "No se selecciono ninguna carrera. Selecciona una.")
+                    else:
+                        dato_seleccionado = self.opcionSeleccionada.get()
+                        query = "SELECT id_carrera FROM subprograma WHERE carrera = %s"
+                        cursor.execute(query, (dato_seleccionado,))
+                        resultado = cursor.fetchall()
+                        cursor.fetchall()
+                        conexion.commit()
+                        mi_tupla = tuple(resultado)
+                        entero = int(mi_tupla[0][0])
+                        print(entero)
+                        if dato_seleccionado2 == "":
+                                messagebox.showerror("Campo Vacío", 
+                                                "No se selecciono ninguna solicitud. Selecciona una.")
+                        else:
+                            query = "SELECT id_solicitud FROM solicitudes WHERE solicitud = %s"
+                            cursor.execute(query, (dato_seleccionado2,))
+                            resultado2 = cursor.fetchall()
+                            cursor.fetchall()
+                            conexion.commit()
+                            mi_tupla2 = tuple(resultado2)
+                            entero2 = int(mi_tupla2[0][0])
+                            print(entero2)
+                            insertar = "INSERT INTO VinculoSolicitud (id_carrera, id_solicitud, cedula) VALUES (%s, %s, %s)"
+                            cursor.execute(insertar, (entero, entero2, entero3))
+                            conexion.commit()
+                            print("dato insertado")
+                            messagebox.showinfo("Confirmación", "El dato ha sido ingresado correctamente.")
+                            conexion.close()
+                else:
+                    messagebox.showerror("Error", 
+                            "La cedula que ingresaste, no se encuentra en el sistema.")
+            else:
+                messagebox.showerror("Error", 
+                            "Debes de ingresar una cedula de identidad.")
+
 if __name__ == "__main__":
     ventana = tk.Tk()
     app = VentanaAgregar(ventana)

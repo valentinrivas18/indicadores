@@ -85,6 +85,7 @@ class VentanaEstudiante:
             cursor.execute("SELECT * FROM estudiante WHERE cedula = %s", (texto,))
             resultado = cursor.fetchone()
             if resultado:
+                
                 messagebox.showerror("Error", "La cédula ya existe en la base de datos")
             else:
                 entero3 = int(texto)
@@ -95,6 +96,7 @@ class VentanaEstudiante:
                 messagebox.showinfo("Confirmación", "El estudiante ha sido registrado correctamente.")
                 conexion.close()
         else:
+            print(type(texto))
             print("No se ingreso ninguna cedula, el campo esta vacio.")
             messagebox.showerror("Campo Vacío", 
                              "Por favor, ingrese la cedula.")
