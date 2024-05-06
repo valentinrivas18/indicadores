@@ -73,7 +73,7 @@ class VentanaPrincipal:
         self.boton4.place(x=300,y=270)
 
         # boton para cerrar ventana
-        self.ventana = tk.Button(self.ventana,fg="white",background=self.coloruniversal, text="Cerrar", font=("Arial", 12,"bold"), width=15, height=1, command=self.cerrarW)
+        self.ventana = tk.Button(self.ventana,fg="white",background=self.coloruniversal, text="Cerrar Sesion", font=("Arial", 12,"bold"), width=15, height=1, command=self.cerrarW)
         self.ventana.pack()
         self.ventana.place(x=300,y=320)
 
