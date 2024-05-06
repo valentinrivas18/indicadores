@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
-from conx import solicitudesDB
+from Conexiones import solicitudesDB
 from PIL import Image, ImageTk
 
 class VentanaBorrar:
@@ -12,10 +12,10 @@ class VentanaBorrar:
         self.BorrarVentana.resizable(width=False, height=False)
         self.BorrarVentana.configure(background='#ffffff')
         self.coloruniversal="#ff8000"
-        self.BorrarVentana.iconbitmap("icon.ico")
+        self.BorrarVentana.iconbitmap("imagenes/icono/icon.ico")
         self.BorrarVentana.grab_set()
 
-        self.imagen = Image.open("pcba.jpg")
+        self.imagen = Image.open("imagenes/pcba.jpg")
         self.tamano_imagen_deseado = (100, 100)
         self.imagen_redimensionada = self.imagen.resize(self.tamano_imagen_deseado)
         self.tkimagen = ImageTk.PhotoImage(self.imagen_redimensionada)

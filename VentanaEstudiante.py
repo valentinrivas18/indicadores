@@ -8,17 +8,14 @@ class VentanaEstudiante:
         self.EstudianteVentana.title("Agregar")
         self.EstudianteVentana.geometry("400x350")
         self.EstudianteVentana.resizable(width=False, height=False)
-        self.EstudianteVentana.iconbitmap("icon.ico")
         self.EstudianteVentana.resizable(width=False, height=False)
         self.EstudianteVentana.configure(background='#ffffff')
         self.coloruniversal="#ff8000"
-        self.EstudianteVentana.iconbitmap("icon.ico")
+        self.EstudianteVentana.iconbitmap("imagenes/icono/icon.ico")
         self.EstudianteVentana.grab_set()
 
         # Verificar si la cédula ya existe en la tabla
         
-
-
         def validate_input(new_value):
             if new_value == "":
                 return True

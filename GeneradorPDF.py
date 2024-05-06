@@ -4,7 +4,7 @@ from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
 import matplotlib.pyplot as plt
-from clase import Plantilla
+from Formatos import Plantilla
 from tkinter import filedialog
 from tkinter import messagebox
 
@@ -89,9 +89,9 @@ class generador:
 
         tablai.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablai.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadi)
         c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarrerai)
@@ -112,9 +112,9 @@ class generador:
         c.drawImage("graficos/102.jpg", 110, 100, width=370, height=270)
         tablap.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablap.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadp)
         c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarrerap)
@@ -135,9 +135,9 @@ class generador:
         c.drawImage("graficos/103.jpg", 110, 100, width=370, height=270)
         tablam.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablam.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadm)
         c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreram)
@@ -159,9 +159,9 @@ class generador:
         c.drawImage("graficos/104.jpg", 110, 100, width=370, height=270)
         tablac.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablac.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadc)
         c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarrerac)
@@ -179,18 +179,17 @@ class generador:
 
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("graficos/106.jpg")
-        c.drawImage("graficos/106.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/105.jpg")
+        c.drawImage("graficos/105.jpg", 110, 100, width=370, height=270)
 
         tablalm.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablalm.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadlm)
         c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreralm)
-        # c.drawImage("uno.jpg", 110, 100, width=370, height=270)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
 
@@ -203,17 +202,16 @@ class generador:
         plt.bar(x, graficoA)
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("106.jpg")
-        c.drawImage("106.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/106.jpg")
+        c.drawImage("graficos/106.jpg", 110, 100, width=370, height=270)
         tablaA.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablaA.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadA)
         c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreraA)
-        # c.drawImage("uno.jpg", 110, 100, width=370, height=270)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
 
@@ -230,13 +228,12 @@ class generador:
         c.drawImage("graficos/107.jpg", 110, 100, width=370, height=270)
         tablatT.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablatT.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadtT)
         c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreratT)
-        # c.drawImage("uno.jpg", 110, 100, width=370, height=270)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
 
@@ -253,13 +250,12 @@ class generador:
         c.drawImage("graficos/108.jpg", 110, 100, width=370, height=270)
         tablatC.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablatC.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadtC)
         c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreratC)
-        # c.drawImage("uno.jpg", 110, 100, width=370, height=270)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()# Guardar el documento PDF
 
@@ -273,14 +269,14 @@ class generador:
         # Etiquetas de los ejes
         plt.xlabel('Solicitudes')
         plt.ylabel('Porcentaje')
-        plt.savefig("graficos/109.jpg.jpg")
-        c.drawImage("graficos/109.jpg.jpg", 110, 100, width=370, height=270)
+        plt.savefig("graficos/109.jpg")
+        c.drawImage("graficos/109.jpg", 110, 100, width=370, height=270)
 
         tablatI.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
         tablatI.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
-        c.drawImage("pcba.jpg", 420, 680, width=100, height=100)
-        c.drawImage("unellez.jpg", 80, 685, width=70, height=80)
-        c.drawImage("gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadtI)
         c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreratI)

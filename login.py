@@ -13,7 +13,7 @@ class LoginWindow:
         self.root.configure(background='#D476F9')
         self.colorlb="#D476F9"
         self.coloruniversal="#ff8000"
-        self.root.iconbitmap("icon.ico")
+        self.root.iconbitmap("imagenes/icono/icon.ico")
 
         # imagen del pcba
         self.imagen = Image.open("imagenes/pcba.jpg")

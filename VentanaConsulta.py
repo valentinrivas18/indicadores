@@ -1,8 +1,8 @@
 import tkinter as tk
 import mysql.connector
-from tablareporte import *
+from GeneradorPDF import *
 from tkinter import messagebox
-from conx import solicitudesDB
+from Conexiones import solicitudesDB
 
 ded = solicitudesDB
 comandos = generador()
@@ -14,7 +14,7 @@ class VentanaConsulta:
         self.consultaventana.resizable(width=False, height=False)
         self.consultaventana.configure(background='#ffffff')
         self.coloruniversal="#ff8000"
-        self.consultaventana.iconbitmap("icon.ico")
+        self.consultaventana.iconbitmap("imagenes/icono/icon.ico")
         self.consultaventana.grab_set()
 
         # etiqute del titulo

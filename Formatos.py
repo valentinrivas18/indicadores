@@ -5,7 +5,7 @@ from reportlab.lib.pagesizes import letter, A4
 from reportlab.platypus import SimpleDocTemplate
 from reportlab.lib import colors
 from reportlab.pdfgen import canvas
-from conx import solicitudesDB
+from Conexiones import solicitudesDB
 
 
 class Plantilla:

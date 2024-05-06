@@ -14,7 +14,7 @@ class VentanaPrincipal:
         self.ventana.resizable(width=False, height=False)
         self.ventana.configure(background='#ffffff')
         self.coloruniversal="#ff8000"
-        self.ventana.iconbitmap("icon.ico")
+        self.ventana.iconbitmap("imagenes/icono/icon.ico")
         
         self.bienvenido = tk.Label(self.ventana,font=("Arial", "14","bold"),background="#ffffff",
         text="Programa de Ciencias Basicas y Aplicadas \n \n Generador de Reporte Semestral")
@@ -23,7 +23,7 @@ class VentanaPrincipal:
 
         # -------------------- #
         # imagen del pcba
-        self.imagen = Image.open("pcba.jpg")
+        self.imagen = Image.open("imagenes/pcba.jpg")
         self.tamano_imagen_deseado = (100, 100)
         self.imagen_redimensionada = self.imagen.resize(self.tamano_imagen_deseado)
         self.tkimagen = ImageTk.PhotoImage(self.imagen_redimensionada)
@@ -35,7 +35,7 @@ class VentanaPrincipal:
         # -------------------- #
 
         # gobierno bolivariano de venezuela
-        self.gob = Image.open("gobierno.jpg")
+        self.gob = Image.open("imagenes/gobierno.jpg")
         self.gobtamano = (720, 40)
         self.imagenredimi = self.gob.resize(self.gobtamano)
         self.gobimagen = ImageTk.PhotoImage(self.imagenredimi)

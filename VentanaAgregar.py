@@ -8,11 +8,10 @@ class VentanaAgregar:
         self.agregarVentana.title("Agregar")
         self.agregarVentana.geometry("400x500")
         self.agregarVentana.resizable(width=False, height=False)
-        self.agregarVentana.iconbitmap("icon.ico")
         self.agregarVentana.resizable(width=False, height=False)
         self.agregarVentana.configure(background='#ffffff')
         self.coloruniversal="#ff8000"
-        self.agregarVentana.iconbitmap("icon.ico")
+        self.agregarVentana.iconbitmap("imagenes/icono/icon.ico")
         self.agregarVentana.grab_set()
         def validate_input(new_value):
             if new_value == "":
