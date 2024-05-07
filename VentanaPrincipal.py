@@ -9,13 +9,22 @@ from PIL import Image, ImageTk
 class VentanaPrincipal:
     def __init__(self, ventana):
         self.ventana = ventana
-        self.ventana.title("INDICADORES")
+        self.ventana.title("INDICA")
         self.ventana.geometry("720x450")
         self.ventana.resizable(width=False, height=False)
         self.ventana.configure(background='#ffffff')
         self.coloruniversal="#ff8000"
         self.ventana.iconbitmap("imagenes/icono/icon.ico")
         
+        # label para mostrar usuario en sesion activa
+        conexion = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="valentin",
+        database="indic",
+        port="3307"
+        )
+
         self.bienvenido = tk.Label(self.ventana,font=("Arial", "14","bold"),background="#ffffff",
         text="Programa de Ciencias Basicas y Aplicadas \n \n Generador de Reporte Semestral")
         self.bienvenido.pack()
@@ -76,6 +85,10 @@ class VentanaPrincipal:
         self.ventana = tk.Button(self.ventana,fg="white",background=self.coloruniversal, text="Cerrar Sesion", font=("Arial", 12,"bold"), width=15, height=1, command=self.cerrarW)
         self.ventana.pack()
         self.ventana.place(x=300,y=320)
+
+        
+        
+        
 
     def cerrarW(self):
             self.ventana.destroy()

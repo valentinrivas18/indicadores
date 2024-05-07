@@ -5,7 +5,7 @@ from tkinter import ttk
 class VentanaAgregar:
     def __init__(self, agregarVentana):
         self.agregarVentana = agregarVentana
-        self.agregarVentana.title("Agregar")
+        self.agregarVentana.title("INDICA - Agregar nueva solicitud")
         self.agregarVentana.geometry("400x500")
         self.agregarVentana.resizable(width=False, height=False)
         self.agregarVentana.resizable(width=False, height=False)

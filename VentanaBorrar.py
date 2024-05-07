@@ -3,11 +3,12 @@ from tkinter import messagebox
 import mysql.connector
 from Conexiones import solicitudesDB
 from PIL import Image, ImageTk
+from Conexiones import solicitudesDB
 
 class VentanaBorrar:
     def __init__(self, BorrarVentana):
         self.BorrarVentana = BorrarVentana
-        self.BorrarVentana.title("Reiniciar Base de Datos")
+        self.BorrarVentana.title("INDICA - Reiniciar Base de Datos")
         self.BorrarVentana.geometry("500x300")
         self.BorrarVentana.resizable(width=False, height=False)
         self.BorrarVentana.configure(background='#ffffff')
