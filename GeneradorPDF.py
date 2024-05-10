@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from Formatos import Plantilla
 from tkinter import filedialog
 from tkinter import messagebox
+from tkinter import ttk
 
 x = ['CDTS', 'SP', 'AR','PDTI', 'AE','CS','EUC','IE','ADN','LP']
 
