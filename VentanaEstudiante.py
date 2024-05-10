@@ -3,9 +3,10 @@ from tkinter import messagebox
 import mysql.connector
 from tkinter import ttk
 class VentanaEstudiante:
+
     def __init__(self, EstudianteVentana):
         self.EstudianteVentana = EstudianteVentana
-        self.EstudianteVentana.title("INDICA - Registrar Estudiante")
+        self.EstudianteVentana.title("Agregar")
         self.EstudianteVentana.geometry("400x350")
         self.EstudianteVentana.resizable(width=False, height=False)
         self.EstudianteVentana.resizable(width=False, height=False)
@@ -14,8 +15,9 @@ class VentanaEstudiante:
         self.EstudianteVentana.iconbitmap("imagenes/icono/icon.ico")
         self.EstudianteVentana.grab_set()
 
-        # Verificar si la cédula ya existe en la tabla
-        
+        # con este pedacito de codigo se verifica que los numeros que se ingresan
+        # son enteros y no son decimales ni tampoco letras
+
         def validate_input(new_value):
             if new_value == "":
                 return True
@@ -76,6 +78,7 @@ class VentanaEstudiante:
         cursor = conexion.cursor()
         #obteniendo datos del textbox (la cedula)
 
+        # Verificar si la cédula ya existe en la tabla
         texto = self.cedula_texto.get()
         if texto:
             print("La cedula introducida es: ",texto)

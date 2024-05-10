@@ -9,7 +9,7 @@ comandos = generador()
 class VentanaConsulta:
     def __init__(self, consultaventana):
         self.consultaventana = consultaventana
-        self.consultaventana.title("INDICA - Generar Reporte")
+        self.consultaventana.title("Ventana de Consulta")
         self.consultaventana.geometry("320x240")
         self.consultaventana.resizable(width=False, height=False)
         self.consultaventana.configure(background='#ffffff')

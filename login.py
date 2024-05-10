@@ -9,7 +9,6 @@ class LoginWindow:
         self.root = root
         self.root.title("INDICA - Inicio de Sesion")
         self.root.geometry("400x400")
-        self.root.resizable(width=False, height=False)
         self.root.configure(background='#D476F9')
         self.colorlb="#D476F9"
         self.coloruniversal="#ff8000"
@@ -20,7 +19,6 @@ class LoginWindow:
         self.tamano_imagen_deseado = (180, 300)
         self.imagen_redimensionada = self.imagen.resize(self.tamano_imagen_deseado)
         self.tkimagen = ImageTk.PhotoImage(self.imagen_redimensionada)
-
 
         #Creando Frame Izquierdo para la Imagen
         self.frame = tk.Frame(root, bg="white",width=200, padx=0, pady=0)
@@ -44,16 +42,18 @@ class LoginWindow:
         self.username_label.place(relx=0.5, rely=0, anchor=tk.CENTER, y=60)
 
         # text box para ingresar usuario
-        self.username_entry = tk.Entry(self.frameder)
+        self.username_entry = tk.Entry(self.frameder, font=("Arial",12))
         self.username_entry.pack(anchor=tk.CENTER, pady=10)
         self.username_entry.place(relx=0.5, rely=0, anchor=tk.CENTER, y=100)
 
+        # label de contraseña
         self.password_label = tk.Label(self.frameder, text="Contraseña:", font=("Arial",12,"bold"), background=self.colorlb)
         self.password_label.pack(pady=10)
         self.password_label.place(relx=0.5, rely=0, anchor=tk.CENTER, y=140)
 
-        
-        self.password_entry = tk.Entry(self.frameder, show="*")
+        # label de usuarios
+
+        self.password_entry = tk.Entry(self.frameder, show="*",font=("Arial",12))
         self.password_entry.pack(pady=20)
         self.password_entry.place(relx=0.5, rely=0, anchor=tk.CENTER, y=180)
 

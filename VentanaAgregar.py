@@ -5,7 +5,7 @@ from tkinter import ttk
 class VentanaAgregar:
     def __init__(self, agregarVentana):
         self.agregarVentana = agregarVentana
-        self.agregarVentana.title("INDICA - Agregar nueva solicitud")
+        self.agregarVentana.title("Agregar")
         self.agregarVentana.geometry("400x500")
         self.agregarVentana.resizable(width=False, height=False)
         self.agregarVentana.resizable(width=False, height=False)
@@ -41,12 +41,15 @@ class VentanaAgregar:
         connection.execute(query2)
         subprograma = [registro[0] for registro in connection]
         
+        """A continuacion este bloque de codigo designa un estilo unico para las listas desplegables
+        y que asi sean mas grandes"""
+
+        
 
         # label text paracedula
         self.titulo = tk.Label(agregarVentana, text="Agregar nueva solicitud", width=20, height=1, font=("Arial", "15","bold"),background="#ffffff")
         self.titulo.pack()
         self.titulo.place(x=75, y=40)
-
         # label text paracedula
         self.labelcedula = tk.Label(agregarVentana, text="Cedula", width=20, height=1, font=("Arial", "14","bold"),background="#ffffff")
         self.labelcedula.pack()
@@ -61,10 +64,12 @@ class VentanaAgregar:
         self.label1.place(x=70, y=200)
         #Lista de subprograma
         self.opcionSeleccionada = tk.StringVar()
-        self.lista_desplegable = ttk.Combobox(self.agregarVentana, textvariable=self.opcionSeleccionada, state="readonly",width=25, height=10)
+        self.lista_desplegable = ttk.Combobox(self.agregarVentana, style="TCombobox",textvariable=self.opcionSeleccionada, state="readonly",width=25, height=10)
+        self.lista_desplegable.configure(font=('Arial', 12))  # Cambiar el tamaño de la fuente
         self.lista_desplegable['values'] = subprograma
         self.lista_desplegable.pack()
-        self.lista_desplegable.place(x=110, y=250)
+        self.lista_desplegable.place(x=70, y=250)
+        self.lista_desplegable.option_add('*TCombobox*Listbox*Font', ('Arial', 12))
         #label de la lista solicitud
         self.label2 = tk.Label(agregarVentana, text="Tipo de solicitud: ",width=20, height=1,font=("Arial", "14","bold"),background="#ffffff")
         self.label2.pack()
@@ -72,10 +77,12 @@ class VentanaAgregar:
         #Lista de solicitudess
         self.opcionSeleccionada2 = tk.StringVar()
         self.lista_desplegable2 = ttk.Combobox(self.agregarVentana, textvariable=self.opcionSeleccionada2, state="readonly",width=25, height=10)
+        self.lista_desplegable2.configure(font=('Arial', 12))
         self.lista_desplegable2['values'] = solicitudes
         self.lista_desplegable2.pack()
-        self.lista_desplegable2.place(x=110, y=350)
-        
+        self.lista_desplegable2.place(x=70, y=350)
+        self.lista_desplegable2.option_add('*TCombobox*Listbox*Font', ('Arial', 12))
+
         # Boton Agregar
         self.botonAgregar = tk.Button(agregarVentana, text="Agregar", command=self.agregar,width=10, height=1,font=("Arial",12,"bold"),background=self.coloruniversal,fg="white",) 
         self.botonAgregar.pack()  # Colocar el botón en la posición predeterminada
@@ -85,7 +92,6 @@ class VentanaAgregar:
         self.botonCerrar = tk.Button(agregarVentana, text="Cerrar", command=self.cerrar_ventana,width=10, height=1,font=("Arial",12,"bold"),background=self.coloruniversal,fg="white",) 
         self.botonCerrar.pack()  # Colocar el botón en la posición predeterminada
         self.botonCerrar.place(x=150, y=450)
-        
 
     def cerrar_ventana(self):
                 self.agregarVentana.destroy()
@@ -150,19 +156,29 @@ class VentanaAgregar:
                             mi_tupla2 = tuple(resultado2)
                             entero2 = int(mi_tupla2[0][0])
                             print(entero2)
-                            insertar = "INSERT INTO VinculoSolicitud (id_carrera, id_solicitud, cedula) VALUES (%s, %s, %s)"
-                            cursor.execute(insertar, (entero, entero2, entero3))
-                            conexion.commit()
-                            print("dato insertado")
-                            messagebox.showinfo("Confirmación", "El dato ha sido ingresado correctamente.")
-                            conexion.close()
+                            # toca verificar si los 4 datos ya estan en el sistema, si los 4 datos estan
+                            # en el sistema, si ya esta, pues no deja introducirlo y se regresa al paso anterior
+                            # como en las otras verificaciones
+                            queryselect = "SELECT id_carrera, id_solicitud, cedula FROM VinculoSolicitud where id_carrera = %s and id_solicitud = %s and cedula = %s"
+                            cursor.execute(queryselect, (entero, entero2, entero3)) 
+                            print(entero,entero2,entero3)
+                            cursor.fetchall()
+                            conexion.commit()                        
+                            if cursor.rowcount > 0:
+                                messagebox.showerror("Error", "No puedes realizar la misma solicitud dos veces")
+                            else:
+                                insertar = "INSERT INTO VinculoSolicitud (id_carrera, id_solicitud, cedula) VALUES (%s, %s, %s)"
+                                cursor.execute(insertar, (entero, entero2, entero3))
+                                conexion.commit()
+                                print("dato insertado")
+                                messagebox.showinfo("Confirmación", "El dato ha sido ingresado correctamente.")
+                                conexion.close()
                 else:
                     messagebox.showerror("Error", 
                             "La cedula que ingresaste, no se encuentra en el sistema.")
             else:
                 messagebox.showerror("Error", 
                             "Debes de ingresar una cedula de identidad.")
-
 if __name__ == "__main__":
     ventana = tk.Tk()
     app = VentanaAgregar(ventana)
