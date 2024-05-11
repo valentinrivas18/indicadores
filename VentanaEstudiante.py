@@ -6,8 +6,17 @@ class VentanaEstudiante:
 
     def __init__(self, EstudianteVentana):
         self.EstudianteVentana = EstudianteVentana
-        self.EstudianteVentana.title("Agregar")
-        self.EstudianteVentana.geometry("400x350")
+        self.EstudianteVentana.title("INDICA - Registrar Estudiante")
+        w = 400
+        h = 350
+
+        screen_width = EstudianteVentana.winfo_screenwidth()
+        screen_height = EstudianteVentana.winfo_screenheight()
+
+        x = (screen_width/2) - (w/2)
+        y = (screen_height/2) - (h/2)
+
+        EstudianteVentana.geometry('%dx%d+%d+%d' % (w, h, x, y))
         self.EstudianteVentana.resizable(width=False, height=False)
         self.EstudianteVentana.resizable(width=False, height=False)
         self.EstudianteVentana.configure(background='#ffffff')
@@ -49,21 +58,21 @@ class VentanaEstudiante:
         self.labelcedula = tk.Label(EstudianteVentana, text="Cedula", width=20, height=1, font=("Arial", "14","bold"),background="#ffffff")
         self.labelcedula.pack()
         self.labelcedula.place(x=70, y=100)
-        # textbox de la cedula
-        self.cedula_texto = tk.Entry(EstudianteVentana, width=15,font=("Arial",12),justify=tk.CENTER,validate="key",validatecommand=(cs, "%P"))
-        self.cedula_texto.pack()
-        self.cedula_texto.place(x=130, y=150)
-
+        
         # Boton Agregar
         self.botonAgregar = tk.Button(EstudianteVentana, text="Agregar", command=self.agregar,width=10, height=1,font=("Arial",12,"bold"),background=self.coloruniversal,fg="white",) 
         self.botonAgregar.pack()  # Colocar el botón en la posición predeterminada
         self.botonAgregar.place(x=150, y=200)
 
+        # textbox de la cedula
+        self.cedula_texto = tk.Entry(EstudianteVentana, width=15,font=("Arial",12),justify=tk.CENTER,validate="key",validatecommand=(cs, "%P"))
+        self.cedula_texto.pack()
+        self.cedula_texto.place(x=130, y=150)
+
         # Boton Cerrar
         self.botonCerrar = tk.Button(EstudianteVentana, text="Cerrar", command=self.cerrar_ventana,width=10, height=1,font=("Arial",12,"bold"),background=self.coloruniversal,fg="white",) 
         self.botonCerrar.pack()  # Colocar el botón en la posición predeterminada
         self.botonCerrar.place(x=150, y=250)
-        
 
     def cerrar_ventana(self):
                 self.EstudianteVentana.destroy()
@@ -100,11 +109,12 @@ class VentanaEstudiante:
             print("No se ingreso ninguna cedula, el campo esta vacio.")
             messagebox.showerror("Campo Vacío", 
                              "Por favor, ingrese la cedula.")
-            
+        if self.cedula_texto:
+            self.cedula_texto.delete(0, tk.END)
+        else:
+             print("No se limpio nada ya que no se introdujo nada")
+              
         
-
-        
-   
 if __name__ == "__main__":
     ventana = tk.Tk()
     app = VentanaEstudiante(ventana)

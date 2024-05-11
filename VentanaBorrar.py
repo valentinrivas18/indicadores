@@ -7,8 +7,17 @@ from PIL import Image, ImageTk
 class VentanaBorrar:
     def __init__(self, BorrarVentana):
         self.BorrarVentana = BorrarVentana
-        self.BorrarVentana.title("Reiniciar Base de Datos")
-        self.BorrarVentana.geometry("500x300")
+        self.BorrarVentana.title("INDICA - Reiniciar Base de Datos")
+        w = 500
+        h = 300
+
+        screen_width = BorrarVentana.winfo_screenwidth()
+        screen_height = BorrarVentana.winfo_screenheight()
+
+        x = (screen_width/2) - (w/2)
+        y = (screen_height/2) - (h/2)
+
+        BorrarVentana.geometry('%dx%d+%d+%d' % (w, h, x, y))
         self.BorrarVentana.resizable(width=False, height=False)
         self.BorrarVentana.configure(background='#ffffff')
         self.coloruniversal="#ff8000"

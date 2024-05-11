@@ -5,8 +5,17 @@ from tkinter import ttk
 class VentanaAgregar:
     def __init__(self, agregarVentana):
         self.agregarVentana = agregarVentana
-        self.agregarVentana.title("Agregar")
-        self.agregarVentana.geometry("400x500")
+        self.agregarVentana.title("INDICA - Agregar solicitud")
+        w = 400
+        h = 500
+
+        screen_width = agregarVentana.winfo_screenwidth()
+        screen_height = agregarVentana.winfo_screenheight()
+
+        x = (screen_width/2) - (w/2)
+        y = (screen_height/2) - (h/2)
+
+        agregarVentana.geometry('%dx%d+%d+%d' % (w, h, x, y))
         self.agregarVentana.resizable(width=False, height=False)
         self.agregarVentana.resizable(width=False, height=False)
         self.agregarVentana.configure(background='#ffffff')
@@ -172,6 +181,9 @@ class VentanaAgregar:
                                 conexion.commit()
                                 print("dato insertado")
                                 messagebox.showinfo("Confirmación", "El dato ha sido ingresado correctamente.")
+                                self.cedula_texto.delete(0,tk.END)
+                                self.lista_desplegable2.set('')
+                                self.lista_desplegable.set('')
                                 conexion.close()
                 else:
                     messagebox.showerror("Error", 
@@ -179,6 +191,8 @@ class VentanaAgregar:
             else:
                 messagebox.showerror("Error", 
                             "Debes de ingresar una cedula de identidad.")
+        
+
 if __name__ == "__main__":
     ventana = tk.Tk()
     app = VentanaAgregar(ventana)

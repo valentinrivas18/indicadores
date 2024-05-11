@@ -9,8 +9,17 @@ from PIL import Image, ImageTk
 class VentanaPrincipal:
     def __init__(self, ventana):
         self.ventana = ventana
-        self.ventana.title("INDICADORES")
-        self.ventana.geometry("720x450")
+        self.ventana.title("INDICA - Menu Principal")
+        w = 720
+        h = 450
+
+        screen_width = ventana.winfo_screenwidth()
+        screen_height = ventana.winfo_screenheight()
+
+        x = (screen_width/2) - (w/2)
+        y = (screen_height/2) - (h/2)
+
+        ventana.geometry('%dx%d+%d+%d' % (w, h, x, y))
         self.ventana.resizable(width=False, height=False)
         self.ventana.configure(background='#ffffff')
         self.coloruniversal="#ff8000"
@@ -108,5 +117,4 @@ class VentanaPrincipal:
 if __name__ == "__main__":
     ventana = tk.Tk()
     app = VentanaPrincipal(ventana)
-    ventana.protocol("WM_DELETE_WINDOW") 
     ventana.mainloop()

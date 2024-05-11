@@ -9,6 +9,16 @@ class LoginWindow:
         self.root = root
         self.root.title("INDICA - Inicio de Sesion")
         self.root.geometry("400x400")
+        w = 400
+        h = 400
+
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+
+        x = (screen_width/2) - (w/2)
+        y = (screen_height/2) - (h/2)
+
+        root.geometry('%dx%d+%d+%d' % (w, h, x, y))
         self.root.configure(background='#D476F9')
         self.colorlb="#D476F9"
         self.coloruniversal="#ff8000"
