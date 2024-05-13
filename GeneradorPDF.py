@@ -5,6 +5,7 @@ from reportlab.lib import colors
 from reportlab.pdfgen import canvas
 import matplotlib.pyplot as plt
 from Formatos import Plantilla
+from ReporteGeneral import PlantillaGENERAL
 from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
@@ -69,6 +70,13 @@ class generador:
         msjcarreratI = tsuI.mensajecarrera()
         fechadtI = tsuI.fecha()
         graficotI = tsuI.grafico()
+        
+        general = PlantillaGENERAL()
+        tablaG = general.crear_tabla()
+        msjcarreraG = general.mensajecarrera()
+        fechaG = general.fecha()
+        graficoG = general.grafico()
+        
         """En esta parte es donde se empieza a formar el pdf como tal, todo lo que hay anterior a esto son las variables que van a
         a ser incluidas en el pdf, nombre de la carrera, subprograma."""
 
@@ -94,7 +102,7 @@ class generador:
         c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
         c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadi)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarrerai)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
@@ -117,7 +125,7 @@ class generador:
         c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
         c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadp)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarrerap)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
@@ -140,7 +148,7 @@ class generador:
         c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
         c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadm)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreram)
         # c.drawImage("uno.jpg", 110, 100, width=370, height=270)
         c.drawString(250,350, "Descripcion Grafica")
@@ -164,7 +172,7 @@ class generador:
         c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
         c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadc)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarrerac)
         # c.drawImage("uno.jpg", 110, 100, width=370, height=270)
         c.drawString(250,350, "Descripcion Grafica")
@@ -189,7 +197,7 @@ class generador:
         c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
         c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadlm)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreralm)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
@@ -211,7 +219,7 @@ class generador:
         c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
         c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadA)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreraA)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
@@ -233,7 +241,7 @@ class generador:
         c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
         c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadtT)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreratT)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
@@ -255,7 +263,7 @@ class generador:
         c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
         c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadtC)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreratC)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()# Guardar el documento PDF
@@ -279,8 +287,32 @@ class generador:
         c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
         c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
         c.drawString(160, 690, fechadtI)
-        c.drawString(160, 660, "Programa de Ciencias Basicas y Aplicadas")
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
         c.drawString(150, 620, msjcarreratI)
+        c.drawString(250,350, "Descripcion Grafica")
+        c.showPage()
+
+        """GENERAL"""
+        tablaG.setStyle(TableStyle([
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),
+        ('BOX', (0, 0), (-1, -1), 1, colors.black)
+        ]))
+        plt.figure()
+        plt.bar(x, graficoG)
+        # Etiquetas de los ejes
+        plt.xlabel('Solicitudes')
+        plt.ylabel('Porcentaje')
+        plt.savefig("graficos/general.jpg")
+        c.drawImage("graficos/general.jpg", 110, 100, width=370, height=270)
+
+        tablaG.wrapOn(c, 1, 1)  # Ancho y alto de la tabla
+        tablaG.drawOn(c, 150, 395)   # Posición (x, y) de la tabla en el canvas
+        c.drawImage("imagenes/pcba.jpg", 420, 680, width=100, height=100)
+        c.drawImage("imagenes/unellez.jpg", 80, 685, width=70, height=80)
+        c.drawImage("imagenes/gobierno.jpg", 180, 720, width=250, height=30)
+        c.drawString(160, 690, fechaG)
+        c.drawString(160, 660, "Programa Ciencias Basicas y Aplicadas")
+        c.drawString(150, 620, msjcarreraG)
         c.drawString(250,350, "Descripcion Grafica")
         c.showPage()
 

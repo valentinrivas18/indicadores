@@ -77,3 +77,23 @@ class solicitudesDB:
         resultado = list(resultado)
         resultado1 = [list(tup) for tup in resultado]
         return resultado1
+
+    """Para toda el subprograma completo"""
+
+    def TotalSCarreraGENERAL(self):
+        cursor = self.conexion.cursor()
+        query = f"SELECT COUNT(*) from VinculoSolicitud"
+        cursor.execute(query)
+        total = cursor.fetchall()
+        total_ent = [int(x) for tup in total for x in tup]
+        t = int(total_ent[0])
+        return t
+
+
+    def TotalSoliPorCarrGENERAL(self, IdSol):
+        cursor = self.conexion.cursor()
+        query = f"Select COUNT(*) from VinculoSolicitud WHERE id_solicitud = {IdSol};"
+        cursor.execute(query)
+        total_soli = cursor.fetchall()
+        fs1 = list(total_soli[0])[0]
+        return fs1
